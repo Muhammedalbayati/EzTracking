@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">EZ-Tracking</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <!-- <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active"
+          >Home <span class="sr-only">(current)</span>
+        </a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/bol/bollist']"
+          routerLinkActive="active"
+          >Bol list</a
+        >
+      </li> -->
+      <!-- <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/bol/addbol']"
+          routerLinkActive="active"
+          >BOL</a
+        >
+      </li> -->
+      <li></li>
+
+      <!-- <li class="nav-item" *ngIf="authServices.roleMatch(['Admin'])">
+          <a
+            class="nav-link"
+            [routerLink]="['/adminPanal']"
+            routerLinkActive="active"
+            >Admin Panal</a
+          >
+        </li> -->
+
+
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="authServices.loggedinUserName()!=''" [routerLink]="['/loggedinUserInfo']"
+          routerLinkActive="active">{{authServices.loggedinUserName()}}</a>
+      </li>
+
+    </ul>
+    <!-- <form
+      class="form-inline mt-6 mt-md-0"
+      id="searchForm"
+      (ngSubmit)="goSearchResultPage(searchTerm)"
+    >
+      <div class="form-group">
+        <input
+          id="searchBox"
+          [(ngModel)]="searchTerm"
+          name="searchTerm"
+          type="text"
+          class="form-control mr-sm-12"
+          placeholder="Search"
+          aria-label="Search"
+        />
+      </div>
+      <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0">
+        Search
+      </button>
+    </form> -->
+    <div *ngIf="authServices.isLoggedIn">
+      <ez-search-box></ez-search-box>
+    </div>
+
+    <div>
+      <a *ngIf="!authServices.isLoggedIn" class="btn btn-outline" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+      <a *ngIf="authServices.isLoggedIn" style="color:#f96816 !important" class="nav-link" [routerLink]="['/login']"
+        routerLinkActive="active" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<!--
+  <simple-modal title="Search Result">
+    <div class="list-group">
+      <div class="list-group-item" *ngFor="let r of result">
+        <a [routerLink]="['/bols',r.bolId]">{{r.bolId}}</a>
+        |{{r.pickupLocation}}|{{r.deliveryLocation}}|{{r.partInfo}}
+      </div>
+    </div>
+  </simple-modal>
+-->

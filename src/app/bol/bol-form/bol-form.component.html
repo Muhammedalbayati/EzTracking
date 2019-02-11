@@ -1,0 +1,175 @@
+<h4 style="color:red">{{errorMsg}}</h4>
+<ngx-spinner color="#f97924"></ngx-spinner>
+
+<div class="container" #bol>
+  <form class="form-horizontal card card-default" [formGroup]="bolForm" (ngSubmit)="saveBol()">
+    <div class="card card-default">
+
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-3 col-lg-4">
+            <div class="form-group">
+              <label class="control-label">Bol#</label>
+              <input type="text" class="form-control" formControlName="bolId" id="bolId" />
+            </div>
+          </div>
+
+          <div class="col-md-3 col-lg-4">
+            <div class="form-group">
+              <label class="control-label">Requester Id</label>
+              <input type="text" class="form-control" formControlName="requesterId" id="requesterId" />
+              <!-- <em *ngIf="requesterId.invalid && requesterId.touched">Required</em> -->
+            </div>
+          </div>
+          <div class="col-md-3 col-lg-4">
+            <div class="form-group">
+              <label class="control-label">Recipient</label>
+              <input type="text" class="form-control" formControlName="recipient" id="recipient" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-lg-4">
+            <label class="control-label">Pickup Location</label>
+            <select class="form-control" formControlName="pickupLocation" id="pickupLocation">
+              <!-- <option value=""> {{ploc}}</option> -->
+              <option *ngFor="let l of bldgLocations" [ngValue]="l.locationId">
+                {{l.locationName}}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-3 col-lg-4">
+            <label class="control-label">delivery Location</label>
+            <select class="form-control" formControlName="deliveryLocation" id="deliveryLocation">
+              <!-- <option value=""> {{dloc}}</option> -->
+              <option *ngFor="let l of bldgLocations" [ngValue]="l.locationId">
+                {{l.locationName}}
+              </option>
+            </select>
+          </div>
+
+
+
+          <div class="col-md-3 col-lg-4">
+            <label class="control-label">Vehicle Type</label>
+            <select class="form-control" formControlName="vehicle" id="vehicle">
+
+              <option *ngFor="let v of vehicles" [ngValue]="v.vehicleId">
+                {{v.vehicleType}} ({{v.vehicleSpace}} palet)
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-lg-4">
+            <div class="form-group">
+              <label class="control-label" for="space">Space</label>
+              <input class="form-control" type="number" formControlName="space" id="space" />
+            </div>
+          </div>
+
+          <div class="col-md-2 col-lg-2">
+            <div class="form-group"> Expidate
+              <label class="switch control-label">
+                <input class="styled form-control" formControlName="expidate" id="expidate" type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- <div class="col-md-2 col-lg-2">
+            <div class="form-group"> Submit Bol
+              <label class="switch control-label">
+                <input class="styled form-control" formControlName="submit" id="submit" type="checkbox" (click)="test()" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div> -->
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="form-group">
+              <label class="control-label">Comment</label>
+              <textarea class="form-control" formControlName="comment" id="comment"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- <div class="col left">left</div> -->
+
+          <div class="btn-toolbar">
+            <button type="submit" id="save" class="btn btn-primary btn-xs mr-2" [disabled]="!bolForm.valid">Save</button>
+            <!-- <button type="button" class="btn btn-default btn-xs" (click)="cancel(eventForm)">Cancel</button> -->
+
+            <!-- <button type="button" id="addItem" class="btn btn-success btn-xs mr-2" [disabled]="bolId.value==0 || submitted.value"
+              modal-trigger="addItemModal">Add
+              Item</button> -->
+
+            <button type="button" id="delete" class="btn text-dark btn-xs mr-2" 
+              modal-trigger="cancelBolModal">Cancel Bol</button>
+          </div>
+
+          <button type="button" 
+          class="btn btn-lg" style="background-color: orange" [ngClass]="readyToSubmit()" (click)="submitBol()">Submit
+        </button>
+                
+          <div class="col text-right">
+            <button type="button" id="delete" class="btn btn-danger btn-xs"  modal-trigger="deleteBolModal">Delete
+              Bol</button>
+          </div>
+
+        </div>
+
+
+      </div><!-- card body -->
+
+    </div>
+    <div class="card card-default">
+      <h4 class="text-center"  style="color:green">BOL been submitted</h4>
+      <div class="card-body">
+
+      </div>
+    </div>
+    
+  </form>
+</div>
+
+
+
+<simple-modal elementId="deleteBolModal" title="Delete Bol">
+  <div>
+    <div>Are you sure want to delete this Bol# ?</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" (click)="deleteBol()">Yes (Delete)</button>
+    <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">NO</button>
+  </div>
+</simple-modal>
+
+<!-- <simple-modal elementId="deleteItemModal" title="Delete Item">
+  <div>
+    <div>Are you sure want to delete this Item?</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" (click)="deleteItem()">Yes (Delete)</button>
+    <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">NO</button>
+  </div>
+</simple-modal> -->
+
+<simple-modal elementId="cancelBolModal" title="cancel Bol">
+  <div>
+    <div>Are you sure want to cancel this Bol# ?</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" (click)="cancelBol()">Yes (cancel)</button>
+    <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">NO</button>
+  </div>
+</simple-modal>

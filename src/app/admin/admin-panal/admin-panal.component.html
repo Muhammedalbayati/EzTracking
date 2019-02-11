@@ -1,0 +1,11 @@
+<!-- I dont use this component -->
+
+<p>Admin Panal!</p>
+
+<nav class="nav nav-tabs nav-justified">
+  <a class="nav-item nav-link active" data-toggle="tab" [routerLink]="[{ outlets: { adminPanal: ['roles'] } }]">Roles</a>
+  <a class="nav-item nav-link" data-toggle="tab" [routerLink]="[{ outlets: { adminPanal: ['usersList'] } }]">Users List</a>
+
+</nav>
+
+<router-outlet name="adminPanal"></router-outlet>

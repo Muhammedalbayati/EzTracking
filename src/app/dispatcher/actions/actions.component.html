@@ -1,0 +1,80 @@
+<div *ngIf="bol">BOL#: <strong>{{bol.bolNumber}}</strong> PickupFrom : <strong>{{bol.pickupLocation.locationName}}</strong>
+  DeliverTo : <strong>{{bol.deliveryLocation.locationName}}</strong> </div>
+<div *ngIf="bol">Submitted Date: <strong>{{bol.submittedDate | date :'short'}} </strong> </div>
+
+<!-- <div *ngIf="bol">{{bol.comment }}</div> -->
+<form class="form-horizontal" [formGroup]="actionsForm">
+
+
+  <div class="form-group row">
+    <label for="select" class="col-4 col-form-label">Driver</label>
+    <div class="col-8">
+      <select formControlName="driver" class="custom-select">
+        <option value=""></option>
+        <option *ngFor="let d of drivers" [ngValue]="d.driverId">
+          {{d.firstName}} {{d.lastName}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="text" class="col-4 col-form-label">Received By</label>
+    <div class="col-8">
+      <input formControlName="receivedBy" cols="40" class="form-control">
+    </div>
+  </div>
+
+
+  <!-- <div >Received By: <strong>{{bol.submittedDate | date :'short'}} </strong> </div> -->
+
+  <div class="form-group row">
+    <label for="textarea" class="col-4 col-form-label">Comment</label>
+    <div class="col-8">
+      <textarea formControlName="comment" cols="40" rows="5" class="form-control"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-4 col-form-label">pickup Arrival</label>
+    <div class="col-4">
+      <label class="switch">
+        <input type="checkbox" formControlName="pickupArrival" (change)="pickedup()">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <strong *ngIf="bol">{{bol.pickupArrivalDate | date :'short'}} </strong>
+  </div>
+ 
+  <div class="form-group row">
+    <label for="textarea" class="col-4 col-form-label">Cancel BOL</label>
+    <div class="col-4">
+      <label class="switch">
+        <input type="checkbox" formControlName="cancelBol" (change)="cancelBol()">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <strong *ngIf="bol">{{bol.canceledDate | date :'short'}} </strong>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="textarea" class="col-4 col-form-label">Completed BOL</label>
+    <div class="col-4">
+      <label class="switch">
+        <input type="checkbox" formControlName="completed" (change)="completeBol()">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <strong *ngIf="bol">{{bol.completedDate | date :'short'}} </strong>
+  </div>
+
+
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" (click)="dismissModal()">Close</button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="saveChanges()">Save changes</button>
+  </div>
+
+</form>

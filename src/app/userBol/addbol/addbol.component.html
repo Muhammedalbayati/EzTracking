@@ -1,0 +1,285 @@
+<h4 style="color:red">{{errorMsg}}</h4>
+<ngx-spinner color="#f97924"></ngx-spinner>
+
+<div class="container" #bol>
+  <form class="form-horizontal card card-default" [formGroup]="bolForm" (ngSubmit)="saveBol()" novalidate>
+    <div class="card card-default">
+
+      <div class="card-body">
+
+        <div class="row">
+
+          <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Bol#</label>
+              <input type="text" class="form-control" formControlName="bolNumber" id="bolNumber" />
+            </div>
+          </div>
+
+          <div class="col-md-4 col-lg-4" *ngIf="hideOrShowExternalCheckBox()">
+            <div class="form-group">External BOL <br>
+              <label class="switch control-label">
+                <input class="styled form-control" formControlName="externalBol" id="externalBol" type="checkbox" (change)="isExternalBol()" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+
+          <div class="col-md-6 col-lg-6">
+            <div class="form-group">
+              <label class="control-label">Requester Id</label>
+              <input type="text" class="form-control" formControlName="requesterId" id="requesterId" />
+              <!-- <em *ngIf="requesterId.invalid && requesterId.touched">Required</em> -->
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <div class="form-group">
+              <label class="control-label">Recipient</label>
+              <input type="text" class="form-control" formControlName="recipient" id="recipient" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <label class="control-label">Pickup Location</label>
+            <select class="form-control" formControlName="pickupLocation" id="pickupLocation">
+              <!-- <option value=""> {{ploc}}</option> -->
+              <option *ngFor="let l of bldgLocations" [ngValue]="l.locationId">
+                {{l.locationName}}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-6 col-lg-6">
+            <label class="control-label">delivery Location</label>
+            <select class="form-control" formControlName="deliveryLocation" id="deliveryLocation" (change)="getSelectedOptionText($event)">
+              <!-- <option value=""> {{dloc}}</option> -->
+              <option *ngFor="let l of bldgLocations" [ngValue]="l.locationId">
+                {{l.locationName}}
+              </option>
+            </select>
+          </div>
+
+          <!-- <div class="col-md-2 col-lg-2">
+            <div class="form-group">CrossDock
+              <label class="switch control-label">
+                <input class="styled form-control" formControlName="isCrossDock" id="isCrossDock" type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div> -->
+
+          <div class="col-md-10 col-lg-8">
+            <div class="form-group">
+              <label class="control-label">CrossDock Address</label>
+              <input type="text" class="form-control" formControlName="crossDockAddress" id="crossDockAddress" />
+            </div>
+          </div>
+
+
+
+          <div class="col-md-3 col-lg-4">
+            <label class="control-label">Vehicle Type</label>
+            <select class="form-control" formControlName="vehicle" id="vehicle">
+
+              <option *ngFor="let v of vehicles" [ngValue]="v.vehicleId">
+                {{v.vehicleType}} ({{v.vehicleSpace}} palet)
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+
+
+
+          <div class="col-md-3 col-lg-4">
+            <div class="form-group">
+              <label class="control-label" for="space">Space</label>
+              <input class="form-control" type="number" formControlName="space" id="space" />
+            </div>
+          </div>
+
+          <div class="col-md-3 col-lg-4">
+            <label class="control-label">Cargo Type</label>
+            <select class="form-control" formControlName="cargo" id="cargo">
+              <option *ngFor="let c of cargos" [ngValue]="c.cargoId">
+                {{c.cargoType}}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-2 col-lg-2">
+            <div class="form-group"> Expidate
+              <label class="switch control-label">
+                <input class="styled form-control" formControlName="expidate" id="expidate" type="checkbox" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+
+          <!-- <div class="col-md-2 col-lg-2">
+            <div class="form-group"> Submit Bol
+              <label class="switch control-label">
+                <input class="styled form-control" formControlName="submit" id="submit" type="checkbox" (click)="test()" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div> -->
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12">
+            <div class="form-group">
+              <label class="control-label">Comment</label>
+              <textarea class="form-control" formControlName="comment" id="comment"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="submittedHours==0">
+          <!-- <div class="col left">left</div> -->
+
+          <div class="btn-toolbar">
+            <button type="submit" id="save" class="btn btn-primary btn-xs mr-2" [disabled]="!bolForm.valid || bolForm.get('submitted').value">Save</button>
+            <!-- <button type="button" class="btn btn-default btn-xs" (click)="cancel(eventForm)">Cancel</button> -->
+
+            <button type="button" id="addItem" class="btn btn-success btn-xs mr-2" [disabled]="bolForm.get('bolNumber').value==null || bolForm.get('submitted').value"
+              modal-trigger="addItemModal">Add
+              Item</button>
+
+            <button type="button" id="delete" class="btn text-dark btn-xs mr-2" [disabled]="!bolForm.get('submitted').value"
+              modal-trigger="cancelBolModal">Cancel Bol</button>
+          </div>
+          <button type="button" [disabled]="!bolForm.get('submitted').value" *ngIf="!bolForm.get('submitted').value"
+            [disabled]="items.length==0" class="btn btn-xs" style="background-color: orange" (click)="submitBol()">Submit
+          </button>
+
+          <div class="col text-right">
+            <button type="button" id="delete" class="btn btn-danger btn-xs" [disabled]="bolForm.get('submitted').value || bolForm.get('bolId').value==0"
+              modal-trigger="deleteBolModal">Delete
+              Bol</button>
+          </div>
+
+        </div>
+
+
+      </div><!-- card body -->
+
+    </div>
+    <div *ngIf="bolForm.get('submitted').value">
+
+      <div class="text-center">
+        <h4 style="color:green">BOL been submitted on {{bolForm.get('submittedDate').value | date :'short'}}</h4>
+      </div>
+      <div class="text-right">
+        <button *ngIf="bolForm.get('submitted').value" [routerLink]="['/bolprint', bolForm.get('bolId').value]"
+          routerLinkActive="router-link-active" class="btn btn-dark waves-effect waves-light">View BOL
+          <i class="fa fa-print"></i></button>
+      </div>
+
+    </div>
+    <!-- <div class="text-center" *ngIf="bolForm.get('completed').value">
+      <h4 style="color:orangered">BOL completed</h4>
+    </div> -->
+  </form>
+
+  <!-- <simple-modal elementId="bolPrintModal" title="Print BOL">
+    <ez-bol-print [bol]="bolForm"></ez-bol-print>
+  </simple-modal> -->
+
+  <!-- Add item modal dilog -->
+  <simple-modal elementId="addItemModal" title="Add Item">
+    <ez-additem [bol]="bolForm" (addItemEvent)="pushAddedItem($event)"></ez-additem>
+  </simple-modal>
+
+
+</div>
+
+<br>
+<div class="table-responsive row-border hover" style="width: 100%">
+  <table class="table table-striped table-sm" *ngIf="items.length!=0">
+    <thead>
+      <tr>
+        <th>Idx</th>
+        <th>Part Info.</th>
+        <th>container Type</th>
+        <th>PBG</th>
+        <th>QTY</th>
+        <th>Pieces Count</th>
+        <th>Blanket On</th>
+        <th>Haz-Mat</th>
+        <th>Shocked Watch</th>
+        <th>Damage</th>
+        <!-- <th></th> -->
+        <th *ngIf="!bolForm.get('submitted').value && !bolForm.get('completed').value">Delete</th>
+
+      </tr>
+      <tr></tr>
+    </thead>
+    <tbody>
+      <!-- | async -->
+      <tr *ngFor="let i of items; let idx=index">
+        <!-- <td>
+              <a  routerLink="['/boldetails',bol.bolId]">{{bol.bolId}}</a>
+            </td> -->
+        <td>{{idx+1}}</td>
+        <td>{{i.partInfo}}</td>
+        <td>{{i.container.containerType}}</td>
+        <td>{{i.pbg.pbgType}}</td>
+        <td>{{i.qty}}</td>
+        <td>{{i.piecesCount}}</td>
+        <td>{{i.blanketOn}}</td>
+        <td>{{i.hazMat}}</td>
+        <td>{{i.shockedWatch}}</td>
+        <td>{{i.damage}}</td>
+        <!-- <td style="color:green">Edit</td> -->
+        <!-- <td style="color:red"><span class="glyphicon glyphicon-trash"></span></td> -->
+        <td modal-trigger="deleteItemModal" *ngIf="!bolForm.get('submitted').value && !bolForm.get('completed').value"
+          (click)="showDeleteItemModal(i.itemId,idx)">
+          <i class="fas fa-trash-alt" style="color:red"></i>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<simple-modal elementId="deleteBolModal" title="Delete Bol">
+  <div>
+    <div>Are you sure want to delete this Bol# ?</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" (click)="deleteBol()">Yes (Delete)</button>
+    <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">NO</button>
+  </div>
+</simple-modal>
+
+<simple-modal elementId="deleteItemModal" title="Delete Item">
+  <div>
+    <div>Are you sure want to delete this Item?</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" (click)="deleteItem()">Yes (Delete)</button>
+    <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">NO</button>
+  </div>
+</simple-modal>
+
+<simple-modal elementId="cancelBolModal" title="cancel Bol">
+  <div>
+    <div>Are you sure want to cancel this Bol# ?</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" (click)="cancelBol()">Yes (cancel)</button>
+    <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">NO</button>
+  </div>
+</simple-modal>

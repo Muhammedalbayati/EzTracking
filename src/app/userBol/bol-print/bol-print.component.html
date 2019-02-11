@@ -1,0 +1,193 @@
+<span style="color:red">{{errorMsg}}</span>
+<ngx-spinner color="#f97924"></ngx-spinner>
+
+<div id="print-btn" class="d-print-none">
+  <div class="text-right">
+    <!-- <a href="javascript:window.print()" class="btn btn-dark waves-effect waves-light"><i class="fa fa-print"></i></a> -->
+    <button class="btn btn-dark waves-effect waves-light" (click)="print()">Print <i class="fa fa-print"></i></button>
+  </div>
+</div>
+
+
+
+<div id="print-section" class="panel-body">
+  <!--****  This padding very important when print the BOL, some of the BOL# will cut off. -->
+  <div style="padding: 5px;">
+    <!-- ********************************************************************************* -->
+    <div class="clearfix">
+      <div class="row">
+        <h5 class="con text-left pl-2">BOL # <br>
+          <strong>{{bol.bolNumber}}</strong></h5>
+        <h3 class="col text-right mr">Ez-Tracking</h3>
+      </div>
+    </div>
+    <hr style="border-bottom:2px solid; margin:0%;">
+    <div class="row">
+      <div class="col-5">
+        <!-- <div class="pull-left m-t-30"> -->
+        <div class="text-left">
+          <address>
+            <strong>From: {{bol.pickupLocationBuilding}}/{{bol.pickupLocationName}}</strong><br>
+            {{bol.pickupLocationAddress}}<br>
+            {{bol.pickupLocationCity}}, {{bol.pickupLocationState}} {{bol.pickupLocationZip}}<br>
+            Phone: {{bol.pickupLocationPhone || 'N/A'}}
+          </address>
+        </div>
+
+        <!-- <div class="text-left">
+          <p><strong>Order Date: </strong> Jun 15, 2015</p>
+          <p class="m-t-10"><strong>Order Status: </strong> <span class="badge badge-danger">Pending</span></p>
+          <p class="m-t-10"><strong>Order ID: </strong> #123456</p>
+        </div> -->
+      </div>
+
+      <div class="col-2 text-center">
+        <div *ngIf="bol.expidate">
+          <i class="fa fa-2x fa-shipping-fast" style="color:red;"></i>
+          <p>Expidate</p>
+        </div>
+
+      </div>
+
+      <div class="col-5 text-right" *ngIf="bol.deliveryLocationBuilding!='CrossDock'">
+        <address>
+          <strong>To: {{bol.deliveryLocationBuilding}}/{{bol.deliveryLocationName}}</strong><br>
+          {{bol.deliveryLocationAddress}} <br>
+          {{bol.deliveryLocationCity}}, {{bol.deliveryLocationState}} {{bol.deliveryLocationZip}}<br>
+          Phone: {{bol.deliveryLocationPhone || 'N/A'}}
+        </address>
+      </div>
+
+      <div class="col-5 text-right" *ngIf="bol.deliveryLocationBuilding=='CrossDock'">
+        <address>
+          <strong>To: {{bol.deliveryLocationBuilding}} *</strong><br>
+          <div *ngFor="let item of crossDockAddressFormater()">{{item}},</div> <br>
+          <div style="font-size:8px; margin: 0%">* Note : CorssDock address entered manually</div>
+        </address>
+
+      </div>
+    </div>
+
+    <hr style="border-bottom:5; margin-bottom:1%;margin-top: 0%">
+
+    <div class="row" style="font-size:10px">
+      <div class="col col-3">
+        {{bol.requesterId}} <strong>{{bol.submittedDate | date :'short'}}</strong>
+        <hr style="border-bottom:5; margin:0%; width:70%">
+        Shipper signature & stamp time
+      </div>
+      <div class="col col-3">
+        {{bol.pickupLocationPhone || 'N/A'}}
+        <hr style="border-bottom:5; margin:0%; width:60%">
+        Emergency phone number
+      </div>
+      <div class="col col-3">
+        {{bol.driverFirstName +' '+ bol.driverLastName || 'sign'}}
+        <hr style="border-bottom:5; margin:0%; width:60%">
+        Driver
+      </div>
+      <div class="col col-3">
+        {{ bol.receivedBy || 'Not received yet'}}
+        <hr style="border-bottom:5; margin:0%; width:60%">
+        Received By
+      </div>
+
+    </div>
+    <hr style="border-bottom:5; margin-bottom:1%;margin-top: 1%">
+
+    <div class="row" style="border: 1px solid gray; border-radius: 8px; padding: 3px;margin: 1px; font-size: 10px">
+      <span><strong>Shipper Comment : </strong> {{bol.comment}}</span>
+    </div>
+
+    <div class="m-h-50"></div>
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive row-border hover" style="width: 100%">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Idx</th>
+                <th>Part Info.</th>
+                <th>container Type</th>
+                <th>PBG</th>
+                <th>QTY</th>
+                <th>Pieces Count</th>
+                <th>Blanket On</th>
+                <th>Haz-Mat</th>
+                <th>Shocked Watch</th>
+                <th>Damage</th>
+                <!-- <th></th> -->
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <!-- | async -->
+              <tr *ngFor="let i of bol.items; let idx=index">
+                <!-- <td>
+                      <a  routerLink="['/boldetails',bol.bolId]">{{bol.bolId}}</a>
+                    </td> -->
+                <td>{{idx+1}}</td>
+                <td>{{i.partInfo}}</td>
+                <td>{{i.container.containerType}}</td>
+                <td>{{i.pbg.pbgType}}</td>
+                <td>{{i.qty}}</td>
+                <td>{{i.piecesCount}}</td>
+                <td>{{i.blanketOn}}</td>
+                <td>{{i.hazMat}}</td>
+                <td>{{i.shockedWatch}}</td>
+                <td>{{i.damage}}</td>
+                <!-- <td style="color:green">Edit</td> -->
+                <!-- <td style="color:red"><span class="glyphicon glyphicon-trash"></span></td> -->
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <hr style="border-bottom:5; margin-bottom:1%;margin-top: 0%">
+    <div class="row">
+      <div class="col-4" style="font-size:10px">
+
+        <strong>Shipper Certification</strong> <br>
+        This is to certly that the above named materials are properly
+        classlfied, packaged, marked, and labeled, and are in proper condition for transport according to the
+        applicable regulatione.
+
+      </div>
+
+      <div class="col-4" style="font-size:10px">
+        <div>
+          <strong> IF HAZ MAT FILL OUT THESE</strong> <br>
+          1- HAZARDOUS MATERIAL <br>
+          2- PROPER SHIPPING NAME <br>
+          3- HASARD CLASS <br>
+          4- ID Number (UN or NA) <br>
+          5- Packing Group <br>
+          6- Weight by valume <br>
+          7- Emergency Phone Number <br>
+          8- Shipper Certification<br>
+        </div>
+      </div>
+
+      <div class="col-4" style="font-size:10px">
+        <strong>Carrier Certification</strong><br>
+        Carrior acknowledges receipt of packages and requlrod placards. carrier certifies that
+        emergency response information was made available and/or carrier has the appropriate response guidebook or
+        eqquivalent document in the vehicle.
+        Shipper Certification
+        <br>
+        <br>
+        <strong>Driver Signature :</strong>_________________________ <br><br>
+        <strong>Date :</strong>_________________________
+      </div>
+
+    </div><!-- row -->
+
+  </div>
+
+  <hr>
+
+</div>

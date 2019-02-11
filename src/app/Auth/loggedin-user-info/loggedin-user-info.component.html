@@ -1,0 +1,79 @@
+<form [formGroup]="userInfoForm" class="col-8">
+
+  <div class="form-group row">
+    <label for="" class="col-4 col-form-label">first name</label>
+    <div class="col-8">
+      <input placeholder="first name" type="text" class="form-control here" required="required" formControlName="firstName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="" class="col-4 col-form-label">last name</label>
+    <div class="col-8">
+      <input placeholder="last name" type="text" class="form-control here" required="required" formControlName="lastName">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="text" class="col-4 col-form-label">Badge#</label>
+    <div class="col-8">
+      <input id="text" name="text" placeholder="Badge Number X0123456" type="text" class="form-control here" required="required"
+        formControlName="badge">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="Email" class="col-4 col-form-label">Email</label>
+    <div class="col-8">
+      <input id="Email" name="Email" placeholder="Email" type="email" class="form-control here" formControlName="email">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="building" class="col-4 col-form-label">Building</label>
+    <div class="col-8">
+      <select id="building" name="building" class="custom-select" required="required" formControlName="building">
+        <option *ngFor="let b of buildings">
+          {{b.building}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="select" class="col-4 col-form-label">Shift</label>
+    <div class="col-8">
+      <select id="select" name="select" class="custom-select" required="required" formControlName="shift">
+        <option value="1st">1st</option>
+        <option value="2nd">2nd</option>
+        <option value="3rd">3rd</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- <div class="form-group row">
+    <label for="" class="col-4 col-form-label">Roles</label>
+    <div class="col-8">
+      <input placeholder="Roles" type="text" class="form-control here" formControlName="roles">
+    </div>
+  </div> -->
+
+  <div class="form-group row">
+    <label for="roles" class="col-4 col-form-label">Roles</label>
+    <div class="col-8">
+      <select id="roles" name="roles" class="custom-select" required="required" formControlName="roles">
+        <option *ngFor="let r of userRoles">
+          {{r}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="" class="col-4 col-form-label">User Claims</label>
+    <div class="col-8">
+      <input placeholder="User claims" type="text" class="form-control here" formControlName="userClaims">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="offset-4 col-8">
+      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,105 @@
+<form [formGroup]="userDetailForm" class="col-8">
+  <div class="form-group row">
+    <label for="" class="col-4 col-form-label">first name</label>
+    <div class="col-8">
+      <input placeholder="first name" type="text" class="form-control here" required="required" formControlName="firstName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="" class="col-4 col-form-label">last name</label>
+    <div class="col-8">
+      <input placeholder="last name" type="text" class="form-control here" required="required" formControlName="lastName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="badge" class="col-4 col-form-label">Badge#</label>
+    <div class="col-8">
+      <input id="badge" placeholder="Badge Number X0123456" type="text" class="form-control here" required="required"
+        formControlName="badge">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="Email" class="col-4 col-form-label">Email</label>
+    <div class="col-8">
+      <input id="Email" name="Email" placeholder="Email" type="email" class="form-control here" formControlName="email">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="building" class="col-4 col-form-label">Building</label>
+    <div class="col-8">
+      <select id="building" name="building" class="custom-select" required="required" formControlName="building">
+        <option *ngFor="let b of buildings" [ngValue]="b.building">
+          {{b.building}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="select" class="col-4 col-form-label">Shift</label>
+    <div class="col-8">
+      <select id="select" name="select" class="custom-select" required="required" formControlName="shift">
+        <option value="1st">1st</option>
+        <option value="2nd">2nd</option>
+        <option value="3rd">3rd</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- <div class="form-group row">
+      <label for="" class="col-4 col-form-label">Roles</label>
+      <div class="col-8">
+        <input placeholder="Roles" type="text" class="form-control here" formControlName="roles">
+      </div>
+    </div> -->
+
+  <div class="form-group row">
+    <label for="roles" class="col-4 col-form-label">Roles</label>
+    <div class="col-8">
+      <select id="roleName" name="roleName" class="custom-select" required="required" formControlName="roleName">
+        <option *ngFor="let r of roles" [ngValue]="r.name">
+          {{r.name}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  
+  <div class="form-group row">
+    <label for="" class="col-4 col-form-label">User Claims</label>
+    <div class="col-8">
+      <input placeholder="User claims" type="text" class="form-control here" formControlName="userClaims">
+    </div>
+  </div>
+  <hr>
+  <div class="form-group row text-center" *ngIf="userDetailForm.get('email').value">
+    <div class=" col-8">
+      <button name="submit" type="submit" class="btn btn-primary btn-sm" (click)="save()">SAVE</button>
+    </div>
+
+    <div class=" col-8">
+      <button name="submit" type="button" class="btn btn-primary btn-sm" (click)="AssignUserToRole()">AssignUserToRole</button>
+    </div>
+
+    <div>
+      <button data-toggle="modal" data-target="#deleteUserModal" class="btn btn-danger btn-sm">Delete
+        User</button>
+    </div>
+  </div>
+</form>
+
+
+
+
+<simple-modal elementId="deleteUserModal" title="Delete User">
+  <div>
+    <div>Are you sure want to delete this User ? {{userDetailForm.get('email').value || ''}}</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-xs btn-danger btn-sm" data-dismiss="modal" (click)="deleteUser()">
+      Yes (Delete)
+    </button>
+    <button type="button" class="btn btn-xs btn-secondary btn-sm" data-dismiss="modal">
+      NO
+    </button>
+  </div>
+</simple-modal>

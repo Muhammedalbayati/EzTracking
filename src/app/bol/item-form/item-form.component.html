@@ -1,0 +1,107 @@
+<form class="col-md-12 ml-auto" [formGroup]="itemForm" #item_form novalidate>
+  <div class="row">
+
+
+    <div class="col-md-6 col-lg-6">
+      <label class="control-label">Container Type</label>
+      <select class="form-control" formControlName="container" id="container">
+        <option *ngFor="let c of containers" [ngValue]="c">
+          {{c.containerType}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-6 col-lg-6">
+      <label class="control-label">Pbg</label>
+      <select class="form-control" formControlName="pbg" id="pbg">
+        <option *ngFor="let p of pbgs" [ngValue]="p">
+          {{p.pbgType}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-6 col-lg-6">
+      <div class="form-group">
+        <label class="control-label" for="qty">Qty</label>
+        <input class="form-control" formControlName="qty" type="number" id="qty" />
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-6">
+      <div class="form-group">
+        <label class="control-label" for="piecesCount">Pieces Count</label>
+        <input class="form-control" formControlName="piecesCount" type="number" id="piecesCount" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <div class="form-group">
+        <label class="control-label" for="partInfo">Part Info</label>
+        <input class="form-control" formControlName="partInfo" type="text" id="partInfo" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-6">
+      <div class="col-md-2 col-lg-2">
+        <div class="form-group"> HazMat
+          <label class="switch control-label">
+            <input class="styled form-control" formControlName="hazMat" id="hazMat" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6 col-lg-6">
+      <div class="col-md-2 col-lg-2">
+        <div class="form-group"> BlanketOn
+          <label class="switch control-label">
+            <input class="styled form-control" formControlName="blanketOn" id="blanketOn" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-6">
+      <div class="col-md-2 col-lg-2">
+        <div class="form-group"> ShockedWatch
+          <label class="switch control-label">
+            <input class="styled form-control" formControlName="shockedWatch" id="shockedWatch" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6 col-lg-6">
+      <div class="col-md-2 col-lg-2">
+        <div class="form-group"> Damage
+          <label class="switch control-label">
+            <input class="styled form-control" formControlName="damage" id="damage" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="saveItem(itemForm.value)">Save</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  </div>
+</form>
+

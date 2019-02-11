@@ -1,0 +1,25 @@
+
+#details-line{
+
+    width: 50% !important;
+    margin: 0%;
+
+}
+
+/* @media print {
+    .printsection {
+        -webkit-print-color-adjust: exact !important;
+        left:70px;
+        display:block;
+        visibility: hidden !important;
+    }
+
+
+    .print-btn{
+        visibility: hidden;
+    }
+
+  
+} */
+
+

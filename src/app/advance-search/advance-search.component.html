@@ -1,0 +1,10 @@
+<p>
+  advance-search works!
+</p>
+<div class="form-group row">
+  <label for="filterUser" class="col-4 col-form-label">Search user</label>
+  <div class="col-8">
+    <input id="filterUser" placeholder="search user" type="text" class="form-control here" required="required"
+      [(ngModel)]="filterBy" (keyup)="searchTermChanged()">
+  </div>
+</div>

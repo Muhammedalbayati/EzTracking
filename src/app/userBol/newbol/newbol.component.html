@@ -1,0 +1,18 @@
+<p>{{errorMsg}}</p>
+<!-- (btnClick)="clickToGetBolFormData($event)" -->
+<ez-bol-form #bol [items]='itemsComp.items'></ez-bol-form>
+
+<button type="button" id="addItem" class="btn btn-success btn-xs ml-3" modal-trigger="addItemModal">Add
+  Item</button>
+
+
+
+
+<!-- Add item modal dilog -->
+<simple-modal elementId="addItemModal" title="Add Item">
+  <!-- (addItemEvent)="pushAddedItem($event)" -->
+  <ez-item-form [bol]="bol.bolForm" (addItemEvent)="pushAddedItem($event)"></ez-item-form>
+</simple-modal>
+
+
+<ez-items-list #itemsComp [item]="item"></ez-items-list>

@@ -1,0 +1,13 @@
+<!-- <ngx-spinner color="#ffbd06"></ngx-spinner> -->
+
+<form class="form-inline" [formGroup]="searchForm">
+  <div class="form-group">
+    <input type="text" class="form-control" style="margin-right: 10px;" formControlName="searchTerm" placeholder="Search"
+      aria-label="Search" />
+    <span>
+      <button id="searchBtn" class="btn btn-outline-success" style="margin-right:50px" (click)="handleSearch()">
+        Search
+      </button>
+    </span>
+  </div>
+</form>

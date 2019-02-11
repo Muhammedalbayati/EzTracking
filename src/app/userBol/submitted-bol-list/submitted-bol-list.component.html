@@ -1,0 +1,50 @@
+<h3>My Submitted Bols : count {{bols.length}}</h3>
+<p style="color:red">{{ errorMsg }}</p>
+<ngx-spinner color="#f97924"></ngx-spinner>
+<!-- class="table-responsive" -->
+<div class="table-responsive row-border hover" style="width: 100%">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Bol#</th>
+        <th>UserId</th>
+        <th>Created Date</th>
+        <th>PickupLocation</th>
+        <th>Delivery Location</th>
+        <th>VehicleType</th>
+        <th>Comment</th>
+        <th>Expidate</th>
+        <th>Submitted</th>
+        <th>Itmes</th>
+        <th>Edit</th>
+        <th>View BOL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- | async -->
+      <tr *ngFor="let bol of bols"  [routerLink]="['/boldetail', bol.bolId]">
+        <!--
+          <td>
+            <a  routerLink="['/addbol',bol.bolId]">{{bol.bolId}}</a>
+          </td>
+        -->
+        <td>{{ bol.bolNumber }}</td>
+        <td title="{{bol.requesterId}}">{{ bol.requesterId }}</td>
+        <td>{{ bol.createdDate | date: "short" }}</td>
+        <td>{{ bol.pickupLocation.locationName }}</td>
+        <td>{{ bol.deliveryLocation.locationName }}</td>
+        <td>{{ bol.vehicle.vehicleType }}</td>
+        <td>{{ bol.comment }}</td>
+        <td> <i [ngClass]="{'fa fa-1x fa-shipping-fast':bol.expidate}" style="color:red"></i> </td>
+        <td> <i [ngClass]="{'fas fa-check':bol.submitted}"></i> </td>
+        <td>{{ bol.bolItems.length }}</td>
+        <td>
+          <i [routerLink]="['/boldetail', bol.bolId]" class="fas fa-edit" style="color:blueviolet"> </i>
+        </td>
+        <td [routerLink]="['/bolprint', bol.bolId]" routerLinkActive="router-link-active"><i class="fas fa-file-alt"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- (click)="details(bol) " -->
+<!-- [routerLink]="['/bol/addbol',bol.bolId]" -->

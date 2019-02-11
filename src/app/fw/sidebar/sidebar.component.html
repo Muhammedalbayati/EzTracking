@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <div class="item">
+    <i class="fas fa-fw fa-bars"></i>
+  </div>
+  <div class="item active" *ngIf="!authServices.isLoggedIn">
+    <a [routerLink]="['/login']">
+      <i class="fas fa-sign-in-alt"></i>Login
+    </a>
+  </div>
+
+  <div class="item active" *ngIf="authServices.isLoggedIn">
+    <a [routerLink]="['/login']" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>Logout
+    </a>
+  </div>
+
+  <div class="item">
+    <i class="fas fa-fw fa-table"></i> Split
+  </div>
+  <div class="item">
+    <i class="fas fa-fw fa-th"></i> Grid
+  </div>
+  <div class="item">
+    <i class="fas fa-fw fa-user-circle"></i> Dash
+  </div>
+</div>
+
+

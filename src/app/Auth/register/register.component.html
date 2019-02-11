@@ -1,0 +1,68 @@
+<ngx-spinner color="#f97924"></ngx-spinner>
+<div class="card .col-centered col-lg-6 col-sm-6">
+  <div class="card-body">
+    <h4 class="card-title">Register</h4>
+    <hr class="bar" />
+    <form class="forms-sample" [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="firstName" class="form-control" formControlName="firstName" id="firstName" placeholder="First Name"
+          [ngClass]="isInputValid(registerForm.get('firstName'))" />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="lastName" class="form-control" formControlName="lastName" id="lastName" placeholder="Last Name"
+          [ngClass]="isInputValid(registerForm.get('lastName'))" />
+      </div>
+      <div class="form-group">
+        <label for="badge">Badge#</label>
+        <input type="badge" class="form-control" formControlName="badge" id="badge" placeholder="Badge#" [ngClass]="isInputValid(registerForm.get('badge'))" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email address"
+          [ngClass]="isInputValid(registerForm.get('email'))" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password"
+          [ngClass]="isInputValid(registerForm.get('password'))" />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword" placeholder="Confirm Password"
+          [ngClass]="isInputValid(registerForm.get('confirmPassword'))" />
+      </div>
+
+      <div class="form-group">
+        <label for="shift">Shift</label>
+        <select class="form-control" formControlName="shift" id="shift" [ngClass]="isInputValid(registerForm.get('shift'))">
+          <option>1st</option>
+          <option>2nd</option>
+          <option>3rd</option>
+        </select>
+
+      </div>
+
+      <div class="form-group">
+        <label for="building">Building</label>
+        <select class="form-control" formControlName="building" id="building" [ngClass]="isInputValid(registerForm.get('building'))">
+          <option *ngFor="let b of buildings" [ngValue]="b.building">
+            {{b.building}}
+          </option>
+        </select>
+      </div>
+
+
+
+      <button type="submit" id="register-btn" class="btn btn-primary btn-lg btn-block" [disabled]="registerForm.invalid">
+        Submit
+      </button>
+      <!--
+        <button class="btn btn-light" [routerLink]="['/home']">Cancel</button>
+      -->
+    </form>
+  </div>
+</div>
+<h4 style="color:red">{{ errorMsg }}</h4>
+<h4 style="color:blue">{{ msg }}</h4>

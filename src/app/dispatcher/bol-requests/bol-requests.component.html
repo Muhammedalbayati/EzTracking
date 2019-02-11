@@ -1,0 +1,109 @@
+<h2>Bols Requests:{{bols.length}}</h2>
+<!-- <span>selected BOLs :{{selectedBols.length}}</span> -->
+<h3>{{ errorMsg }}</h3>
+<ngx-spinner color="#f97924"></ngx-spinner>
+
+
+
+
+
+<div>
+
+  <!-- class="table-responsive" -->
+  <div class="table-responsive row-border hover" style="width: 100%">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>Bol#</th>
+          <th>UserId</th>
+          <th>Submitted Date</th>
+          <th>PickupLocation</th>
+          <th>Delivery Location</th>
+          <th>VehicleType</th>
+          <th>Comment</th>
+          <th>Submitted</th>
+          <th>Expidate</th>
+          <th>itmes</th>
+          <th>Driver</th>
+          <th>Details</th>
+
+          <th>Editing By</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- | async -->
+        <!-- class="border border-danger"  -->
+        <!-- ,'strikeout':getEditInfo(bol.bolId)!=null-->
+        <tr *ngFor="let bol of bols" [ngClass]="{'text-success': bol.submitted}">
+
+          <td title="{{ bol.bolNumber }}">{{ bol.bolNumber }}</td>
+          <td title="{{bol.requesterId}}">{{ bol.requesterId }}</td>
+          <td>{{ bol.submittedDate | date: "short" }}</td>
+          <td>{{ bol.pickupLocation.locationName }}</td>
+          <td>{{ bol.deliveryLocation.locationName }}</td>
+          <td>{{ bol.vehicle.vehicleType }}</td>
+          <td title="{{bol.comment}}">{{ bol.comment }}</td>
+          <td> <i [ngClass]="{'fas fa-check':bol.submitted}"></i> </td>
+          <td> <i [ngClass]="{'fa fa-1x fa-shipping-fast':bol.expidate}" style="color:red"></i> </td>
+          <td>{{ bol.bolItems.length }}</td>
+          <td>{{ bol.driver?.firstName + bol.driver?.lastName }}</td>
+          <td>
+            <i [routerLink]="['/bolreq-details', bol.bolId]" class="fas fa-edit"
+              style="color:blueviolet;cursor: pointer;">
+            </i>
+          </td>
+          <!-- <td *ngIf="bolsLockedArray.indexOf(bol.bolId)!=-1">
+            {{bolsLockedArray[bolsLockedArray.indexOf(bol.bolId)].editByUser}}
+          </td> -->
+
+          <td style="max-width: 100px; background-color: yellow" *ngIf="getEditInfo(bol.bolId)!=null">
+            <!-- {{bolsLockedArray[bolsLockedArray.indexOf(bol.bolId)].'editByUser'}} -->
+            {{ getEditInfo(bol.bolId).editByUser }}
+            <!-- {{ bolsLockedArray.map( function(o) { return o.editByUser }).indexOf(bol.bolId) }} -->
+          </td>
+
+          <td *ngIf="getEditInfo(bol.bolId)==null">
+
+          </td>
+          <!-- C:\Users\muham\Documents\EzTrackingAngular\src\assets\img\text-entering-loader.gif -->
+          <!-- <td> <i *ngIf="bolsLockedArray.indexOf(bol.bolId)!==-1" class="fas fa-lock">{{lockedBy.firstName)}}
+              {{lockedBy.lastName}}</i>
+          </td> -->
+
+          <td>
+            <i class="fas fa-hammer" data-toggle="modal" style="color:blueviolet ;cursor: pointer;"
+              data-target="#exampleModal" (click)="handleSelectedBol(bol)"></i>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dismissModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <ez-actions [bolId]="selectedBolId"></ez-actions>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

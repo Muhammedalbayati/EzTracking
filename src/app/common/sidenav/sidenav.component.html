@@ -1,0 +1,106 @@
+<div class="container-fluid" *ngIf="authServices.isLoggedIn">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+
+          <!-- advanceSearch -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/advanceSearch']" routerLinkActive="active">BOLs Advance Search</a>
+          </li>
+          <!-- Dispatcher -->
+          <div *ngIf="authServices.roleMatch(['Admin','Dispatcher'])">
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Dispatcher</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/bolrequests']" routerLinkActive="active">BOLs Requests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/completedrequests']" routerLinkActive="active">Completed Requests</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/actions']" routerLinkActive="active">Actions</a>
+              </li>
+
+          </div>
+
+
+          <!-- Users (anyone) -->
+          <div>
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+              style="margin:0%">
+              <span>My Menu</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/addbol']" routerLinkActive="active"> Create A BOL</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/savedbols']" routerLinkActive="active">My Saved Bols</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/submittedbols']" routerLinkActive="active"> My Submitted Bol </a>
+            </li>
+          </div>
+
+          <!-- Admin only -->
+          <div *ngIf="authServices.roleMatch(['Admin'])">
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Admin</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/usersList']" routerLinkActive="active">Users List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/roles']" routerLinkActive="active">Roles</a>
+            </li>
+          </div>
+
+
+
+          <!-- Admin & Manager -->
+          <div *ngIf="authServices.roleMatch(['Admin','Manager'])">
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Reports</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="users"></span>
+                Customers
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="bar-chart-2"></span>
+                Reports
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="layers"></span>
+                Integrations
+              </a>
+            </li>
+
+          </div>
+
+        </ul>
+
+      </div>
+    </nav>

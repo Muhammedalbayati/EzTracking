@@ -1,0 +1,106 @@
+<h2>Completed Bols Requests:{{bols.length}}</h2>
+<h3>{{ errorMsg }}</h3>
+<ngx-spinner color="#f97924"></ngx-spinner>
+<!-- class="table-responsive" -->
+
+<form class="form-horizontal card card-default" [formGroup]="findForm" (ngSubmit)="findDate()" novalidate>
+  <div class="card card-default">
+
+    <div class="card-body">
+
+      <div class="row">
+
+        <div class="col-md-4 col-sm-4">
+          <!-- <label class="control-label">From Date</label> -->
+          From Date <input type="datetime-local" class="form-control" formControlName="fromDate" id="fromDate" />
+        </div>
+        <div class="col-md-4 col-sm-4">
+          To Date <input type="datetime-local" class="form-control" formControlName="toDate" id="toDate" />
+        </div>
+
+        <button type="button" class="btn btn-success btn-xs" (click)="findDate()" id="find-date-btn">Find</button>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+
+
+<div class="table-responsive row-border hover" style="width: 100%">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Bol#</th>
+        <th>UserId</th>
+        <th>Submitted Date</th>
+        <th>Completed Date</th>
+        <th>PickupLocation</th>
+        <th>Delivery Location</th>
+        <th>VehicleType</th>
+        <th>Comment</th>
+        <th>Submitted</th>
+        <th>itmes</th>
+        <th>Driver</th>
+        <th>Details</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- | async -->
+      <!-- ezHoverOverText [config]="{querySelector:'#comment'}" -->
+      <tr *ngFor="let bol of bols" [ngClass]="{'text-success': bol.submitted}">
+        <!--
+          <td>
+            <a  routerLink="['/addbol',bol.bolId]">{{bol.bolId}}</a>
+          </td>
+        -->
+        <td title="{{ bol.bolNumber }}">{{ bol.bolNumber }}</td>
+        <td title="{{bol.requesterId}}">{{ bol.requesterId }}</td>
+        <td title="{{ bol.submittedDate | date: 'short'}}">{{ bol.submittedDate | date: "short" }}</td>
+        <td title="{{bol.completedDate | date: 'short'}}">{{bol.completedDate | date: "short" }}</td>
+        <td>{{ bol.pickupLocation.locationName }}</td>
+        <td>{{ bol.deliveryLocation.locationName }}</td>
+        <td>{{ bol.vehicle.vehicleType }}</td>
+        <!-- ezHoverOverText -->
+        <td id="comment" title="{{bol.comment}}">{{ bol.comment }} </td>
+        <td> <i [ngClass]="{'fas fa-check':bol.submitted}"></i> </td>
+        <td>{{ bol.bolItems.length }}</td>
+        <td title="{{ bol.driver?.firstName + bol.driver?.lastName +  bol.driver?.phoneNumber }}">{{
+          bol.driver?.firstName + bol.driver?.lastName }}</td>
+        <td>
+          <i [routerLink]="['/bolreq-details', bol.bolId]" class="fas fa-edit" style="color:blueviolet ; cursor: pointer;">
+          </i>
+        </td>
+        <td>
+          <i class="fas fa-hammer" data-toggle="modal" style="color:blueviolet ;cursor: pointer;" data-target="#exampleModal"
+            (click)="handleSelectedBol(bol)"></i>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- (click)="details(bol) " -->
+<!-- [routerLink]="['/bol/addbol',bol.bolId]" -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <ez-actions [bolId]="selectedBolId"></ez-actions>
+
+      </div>
+
+    </div>
+  </div>
+</div>
