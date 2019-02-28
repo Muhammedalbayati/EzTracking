@@ -5,6 +5,7 @@ export const CONFIG = {
       bols: "http://localhost:8888/api/bols",
       vehicles: "http://localhost:8888/api/vehicles",
       containers: "http://localhost:8888/api/containers",
-      locations: "http://localhost:8888/api/locations"
+      locations: "http://localhost:8888/api/locations",
+      charts: "http://localhost:8888/api/charts"
     }
   };

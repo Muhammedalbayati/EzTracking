@@ -13,6 +13,7 @@ const Urls = CONFIG.Urls;
 import { SignalRModule, SignalR } from 'ng2-signalr';
 import { SignalRConfiguration } from 'ng2-signalr';
 import { SignalrService } from '../Services';
+import { ChartComponent } from './chart/chart.component';
 
 
 export function createConfig(): SignalRConfiguration {
@@ -36,9 +37,10 @@ export function createConfig(): SignalRConfiguration {
     ModalTriggerDirective,
     SimpleModalComponent,
     SearchBoxComponent,
-    HoverOverTextDirective
+    HoverOverTextDirective,
+    ChartComponent
   ],
   // providers: [SignalrService],
-  exports: [SimpleModalComponent, ModalTriggerDirective, SearchBoxComponent, HoverOverTextDirective]
+  exports: [SimpleModalComponent,ChartComponent, ModalTriggerDirective, SearchBoxComponent, HoverOverTextDirective]
 })
 export class SharedModule { }

@@ -5,18 +5,16 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { NgxSpinnerModule } from "ngx-spinner";
-
 import { AppRoutingModule, AppRoutedCompoenets } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BolModule } from "./bol/bol.module";
-
 import {
   TOASTR_TOKEN,
   Toastr,
   JQ_TOKEN,
   NavbarComponent,
-  SimpleModalComponent,
-  ModalTriggerDirective,
+  // SimpleModalComponent,
+  // ModalTriggerDirective,
   SharedModule
 } from "./common/index";
 import { SearchResultComponent } from "./search-result/search-result.component";
@@ -40,7 +38,6 @@ import { AdvanceSearchComponent } from './advance-search/advance-search.componen
 
 
 
-
 let toastr: Toastr = window["toastr"];
 let jQuery = window["$"];
 @NgModule({
@@ -51,10 +48,10 @@ let jQuery = window["$"];
     UserBolModule,
     DispatcherModule,
     RouterModule,
+    
     HttpClientModule,
     NgxSpinnerModule,
     ReactiveFormsModule,
-    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     FwModule,

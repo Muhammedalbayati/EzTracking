@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { TOASTR_TOKEN, Toastr } from 'src/app/common/toastr.service';
 import { BolService } from 'src/app/Services';
 import { Bol } from 'src/app/models/bol';
@@ -7,13 +7,16 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SignalR, SignalRConnection, IConnectionOptions, BroadcastEventListener } from 'ng2-signalr';
 import { AddUpdateBol } from 'src/app/models/addUpdateBol';
 import { BolUpdate } from 'src/app/models/bolUpdate';
+import * as $ from 'jquery';
+declare let $: any;
 
 @Component({
   selector: 'ez-bol-requests',
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './bol-requests.component.html',
   styleUrls: ['./bol-requests.component.css']
 })
-export class BolRequestsComponent implements OnInit {
+export class BolRequestsComponent implements OnInit,AfterViewInit {
   // selectedBols: any[] = [] //// This for multipule selections 
 
   bols: any[] = [];
@@ -37,6 +40,7 @@ export class BolRequestsComponent implements OnInit {
 
 
   constructor(
+
     private _signalR: SignalR,
     private bolService: BolService,
     private spinner: NgxSpinnerService
@@ -64,6 +68,11 @@ export class BolRequestsComponent implements OnInit {
 
   }
 
+
+  ngAfterViewInit(): void {
+    ($('#one') as any).selectable();
+}
+
   getAllBolsInfoListenerSubscriber() {
     this.getAllBolListener.subscribe(editInfoList => {
       editInfoList.forEach(b => {
@@ -73,6 +82,7 @@ export class BolRequestsComponent implements OnInit {
 
     })
   }
+
 
   EditBolListenerSubscriber() {
 
@@ -88,7 +98,7 @@ export class BolRequestsComponent implements OnInit {
         if (editInfo.bolStatus == 'remove') {
           const r = this.bols.indexOf(editInfo.bolId);
           this.bols.splice(r)
-        }else{
+        } else {
           this.bolsLockedArray.splice(index, 1);
           this.lockedByArray.splice(index, 1)
         }
@@ -193,3 +203,4 @@ export class BolRequestsComponent implements OnInit {
 
 
 }
+

@@ -7,3 +7,6 @@ export * from "./simpleModal.component";
 export * from "./modalTrigger.directive";
 export * from "./decode-url.pipe";
 export * from "./shared.module";
+export * from "./chart/chart.component"
+export * from "./search-box/search-box.component"
+export * from "./hover-over-text.directive"

@@ -40,7 +40,6 @@ export class BollistComponent implements OnInit {
         this.errorMsg = err;
       }
     );
-
   }
 
   // details(bol: Bol) {
