@@ -114,7 +114,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           this.buildings = data;
-          console.log(data)
+          // console.log(data)
           this.spinner.hide()
         },
         (err: any) => (this.errorMsg = err)

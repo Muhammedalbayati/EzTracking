@@ -43,8 +43,8 @@
 </div>
 
 
-  <!--Add item modal dilog -->
-  <!-- <simple-modal elementId="addItemModal" title="Add Item">
+<!--Add item modal dilog -->
+<!-- <simple-modal elementId="addItemModal" title="Add Item">
     <ez-additem [bol]="bolForm" (addItemEvent)="pushAddedItem($event)"></ez-additem>
   </simple-modal> -->
 
@@ -53,7 +53,8 @@
     <div>Are you sure want to delete this Item?</div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" (click)="deleteItem()">Yes (Delete)</button>
+    <!-- (click)="deleteItem()" -->
+    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal">Yes (Delete)</button>
     <button type="button" class="btn btn-xs btn-secondary" data-dismiss="modal">NO</button>
   </div>
 </simple-modal>

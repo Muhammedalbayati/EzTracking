@@ -29,8 +29,8 @@ export class LoggedinUserInfoComponent implements OnInit {
   ngOnInit() {
     this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
     this.userRoles = JSON.parse(this.userInfo.roles)
-    console.log(this.userInfo)
-    console.log(this.userRoles)
+    // console.log(this.userInfo)
+    // console.log(this.userRoles)
     // this.userInfo = JSON.parse(this.userInfo)
     this.getBuildings();
 
@@ -64,7 +64,7 @@ export class LoggedinUserInfoComponent implements OnInit {
       .subscribe(
         data => {
           this.buildings = data;
-          console.log(data)
+          // console.log(data)
           this.spinner.hide()
         },
         (err: any) => (this.errorMsg = err)

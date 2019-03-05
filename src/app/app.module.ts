@@ -39,6 +39,8 @@ import { AdvanceSearchComponent } from './advance-search/advance-search.componen
 
 
 
+
+
 let toastr: Toastr = window["toastr"];
 let jQuery = window["$"];
 @NgModule({
@@ -49,7 +51,7 @@ let jQuery = window["$"];
     UserBolModule,
     DispatcherModule,
     RouterModule,
-   
+
 
     HttpClientModule,
     NgxSpinnerModule,
@@ -60,7 +62,7 @@ let jQuery = window["$"];
     AdminModule
   ],
   declarations: [
-    
+
     AppComponent,
 
     AppRoutedCompoenets,
@@ -68,7 +70,7 @@ let jQuery = window["$"];
     SidenavComponent,
     SearchResultComponent,
     AdvanceSearchComponent,
-   
+
     // SearchTriggerDirective,
 
   ],
