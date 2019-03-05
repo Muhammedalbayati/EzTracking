@@ -1,106 +1,117 @@
-<div class="container-fluid" *ngIf="authServices.isLoggedIn">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
+<div>
+  
+</div>
+<div class="sidenav" [ngStyle]="sideBarStyle" style="overflow-y: auto;" *ngIf="authServices.isLoggedIn">
+    <!--   -->
+  <div>
+    <a id="toggleBtn" (click)="doToggle()" style="cursor: pointer;">
+      <i class="fas fa-fw fa-bars">
+        <i class="fas fa-angle-right" *ngIf="!toggle"></i>
+        <i class="fas fa-angle-left" *ngIf="toggle"></i>
+      </i>
+    </a>
+  </div>
 
-          <!-- advanceSearch -->
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/advanceSearch']" routerLinkActive="active">BOLs Advance Search</a>
-          </li>
-          <!-- Dispatcher -->
-          <div *ngIf="authServices.roleMatch(['Admin','Dispatcher'])">
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Dispatcher</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
+  <!-- advanceSearch -->
+  <div class="item">
+    <a [routerLink]="['/advanceSearch']" routerLinkActive="active">
+      <i class="fas fa-fw fa-th"></i>Advance Search
+    </a>
+  </div>
 
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/bolrequests']" routerLinkActive="active">BOLs Requests</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/completedrequests']" routerLinkActive="active">Completed Requests</a>
-              </li>
+  <!-- Dispatcher -->
+  <div *ngIf="authServices.roleMatch(['Admin','Dispatcher'])">
 
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/actions']" routerLinkActive="active">Actions</a>
-              </li>
+    <div class="item" style="background-color:gray">
+      <a>
+        <i class="fas fa-fw fa-user-circle"></i>Dispatcher
+      </a>
+    </div>
 
-          </div>
-
-
-          <!-- Users (anyone) -->
-          <div>
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-              style="margin:0%">
-              <span>My Menu</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/addbol']" routerLinkActive="active"> Create A BOL</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/savedbols']" routerLinkActive="active">My Saved Bols</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/submittedbols']" routerLinkActive="active"> My Submitted Bol </a>
-            </li>
-          </div>
-
-          <!-- Admin only -->
-          <div *ngIf="authServices.roleMatch(['Admin'])">
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Admin</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/usersList']" routerLinkActive="active">Users List</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/roles']" routerLinkActive="active">Roles</a>
-            </li>
-          </div>
+    <div class="item">
+      <a [routerLink]="['/bolrequests']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>BOLs Requests
+      </a>
+    </div>
 
 
+    <div class="item">
+      <a [routerLink]="['/completedrequests']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Completed Requests
+      </a>
+    </div>
 
-          <!-- Admin & Manager -->
-          <div *ngIf="authServices.roleMatch(['Admin','Manager'])">
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Reports</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
+    <div class="item">
+      <a [routerLink]="['/actions']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Actions
+      </a>
+    </div>
 
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="users"></span>
-                Customers
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="bar-chart-2"></span>
-                Reports
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="layers"></span>
-                Integrations
-              </a>
-            </li>
+  </div>
+  <!--End Dispatcher -->
 
-          </div>
 
-        </ul>
+  <div>
+    <!-- user menu -->
+    <div class="item" style="background-color:gray">
+      <a>
+        <i class="fas fa-fw fa-user-circle"></i>My menu
+      </a>
+    </div>
 
-      </div>
-    </nav>
+
+    <div class="item">
+      <a [routerLink]="['/addbol']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Create A BOL
+      </a>
+    </div>
+
+    <div class="item">
+      <a [routerLink]="['/savedbols']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>My Saved Bols
+      </a>
+    </div>
+    <div class="item">
+      <a [routerLink]="['/submittedbols']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>My Submitted Bol
+      </a>
+    </div>
+  </div><!-- End of user menu div -->
+
+
+  <div *ngIf="authServices.roleMatch(['Admin'])">
+    <!-- Admin menu -->
+
+    <div class="item" style="background-color:gray">
+      <a>
+        <i class="fas fa-fw fa-user-circle"></i>Admin menu
+      </a>
+    </div>
+
+
+    <div class="item">
+      <a [routerLink]="['/usersList']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Users List
+      </a>
+    </div>
+
+    <div class="item">
+      <a [routerLink]="['/roles']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Roles
+      </a>
+    </div>
+
+
+  </div><!-- End of Admin menu div -->
+
+
+  <!-- Manager -->
+  <div *ngIf="authServices.roleMatch(['Admin','Manager'])">
+
+
+  </div>
+
+
+
+</div>
+<!--End of sidenav div -->

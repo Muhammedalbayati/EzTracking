@@ -1,6 +1,9 @@
-<ez-navbar></ez-navbar>
-<ez-sidenav ></ez-sidenav>
-<!-- <fw-sidebar></fw-sidebar> -->
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+
+  <ez-navbar></ez-navbar>
+  <br>
+  <br>
+  <ez-sidenav #sideBar></ez-sidenav>
+  <div [ngStyle]="sideBar.mainStyle">
+    <router-outlet></router-outlet>
+  </div>
+

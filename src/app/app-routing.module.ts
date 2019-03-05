@@ -26,13 +26,13 @@ const routes: Routes = [
     path: "searchresult", // path: "search/:searchTerm",
     component: SearchResultComponent,
     canActivate: [AuthGuard],
-    data: { roles: ["Admin","Manager","Dispatcher","Employee"] }
+    data: { roles: ["Admin", "Manager", "Dispatcher", "Employee"] }
   },
   {
     path: "advanceSearch", // path: "search/:searchTerm",
     component: AdvanceSearchComponent,
     canActivate: [AuthGuard],
-    data: { roles: ["Admin","Manager","Dispatcher","Employee"] }
+    data: { roles: ["Admin", "Manager", "Dispatcher", "Employee"] }
   },
   { path: "", pathMatch: "full", redirectTo: "home" }
 ];
@@ -41,7 +41,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
 export const AppRoutedCompoenets = [
   HomeComponent,
   SearchResultComponent,

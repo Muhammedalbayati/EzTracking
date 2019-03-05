@@ -1,19 +1,25 @@
-<button id="showToastrBtn" type="button" (click)="showToastr()">toastr test</button>
 
-<button>Delete <i class="fas fa-trash-alt" style="color:red"></i></button>
-<br>
-
-
-
-<div class="row">
-  <div class="col-sm">
-    One of three columns
+  <div class="panel-header panel-header-lg">
+    <canvas #myChart class="my-4 chartjs-render-monitor" id="myChart"
+      style="display: block; height: 200px; width: 1018px;"></canvas>
   </div>
-  <div class="col-sm">
-    <ez-chart [chartData]="chartData" [chartType]="'bar'"></ez-chart>
+
+  <div class="row">
+    <div class="col-md-3">
+      One of three columns
+    </div>
+    <div class="col-md-3">
+      <ez-chart [chartData]="chartData" [chartType]="'bar'"></ez-chart>
+    </div>
+    <div class="col-md-3">
+      <ez-chart [chartData]="chartData" [chartType]="'pie'"></ez-chart>
+    </div>
   </div>
-  <div class="col-sm">
-    <ez-chart [chartData]="chartData" [chartType]="'pie'"></ez-chart>
-  </div>
-</div>
+
+
+
+
+
+
+
 <!-- <ez-bol-form [bol]="bol" (btnClick)="clickToGetBolFormData($event)"></ez-bol-form> -->
