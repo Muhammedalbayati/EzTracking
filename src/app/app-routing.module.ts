@@ -15,6 +15,7 @@ import { AdvanceSearchComponent } from "./advance-search/advance-search.componen
 import { ForgotpasswordComponent } from "./Auth/forgotpassword/forgotpassword.component";
 
 const routes: Routes = [
+
   {
     path: "home", component: HomeComponent,
     canActivate: [AuthGuard],
@@ -39,7 +40,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ["Admin", "Manager", "Dispatcher", "Employee"] }
   },
-  { path: "", pathMatch: "full", redirectTo: "home" }
+  { path: "", pathMatch: "full", redirectTo: "home" },
 ];
 
 @NgModule({

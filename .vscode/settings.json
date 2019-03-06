@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/330b5814-b36d-4396-bc7a-32a62ee6ae88/resourceGroups/EzTracking/providers/Microsoft.Web/sites/EzTracking",
+    "appService.deploySubpath": ""
+}
