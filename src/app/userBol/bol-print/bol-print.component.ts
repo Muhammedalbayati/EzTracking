@@ -13,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class BolPrintComponent implements OnInit {
   bol: any = {}
-errorMsg:''
+  errorMsg: ''
 
   constructor(
     private router: Router,
@@ -23,7 +23,7 @@ errorMsg:''
   ) { }
 
   ngOnInit() {
-    
+
     this.route.paramMap.subscribe(params => {
       if (params.get("bolId") != null) {
         this.getBolToPrint(params.get("bolId"));
@@ -42,20 +42,20 @@ errorMsg:''
       },
       err => {
         // console.log(err);
-        this.errorMsg=err
+        this.errorMsg = err
         this.spinner.hide();
       }
     );
   }
 
   fillBolObject(bol) {
-console.log(bol)
+    console.log(bol)
     this.bol = {
       assginToDriverDate: bol.assginToDriverDate,
       assginedToDriver: bol.assginToDriver,
-      driverFirstName:bol.driver.firstName,
-      driverLastName:bol.driver.lastName,
-      driverPhoneNumber:bol.driver.phoneNumber,
+      driverFirstName: (bol.hasOwnProperty('driver.firstName') ? bol.driver.firstName : 'No driver assign yet'),
+      driverLastName: (bol.hasOwnProperty('driver.lastName') ? bol.driver.lastName : ''),
+      driverPhoneNumber: (bol.hasOwnProperty('driver.phoneNumber') ? bol.driver.phoneNumber : ''),
       bolId: bol.bolId,
       bolNumber: bol.bolNumber,
       items: bol.bolItems,
@@ -108,12 +108,12 @@ console.log(bol)
     // deliveryLocation: bol.deliveryLocation.locationId,
     // pickupLocation: bol.pickupLocation.locationId,
     // vehicle: bol.vehicle.vehicleId
-this.crossDockAddressFormater();
+    this.crossDockAddressFormater();
   };
 
-  crossDockAddressFormater(){
-    if(this.bol.crossDockAddress==null || this.bol.crossDockAddress=='') return
-    var ad=this.bol.crossDockAddress.split(",")
+  crossDockAddressFormater() {
+    if (this.bol.crossDockAddress == null || this.bol.crossDockAddress == '') return
+    var ad = this.bol.crossDockAddress.split(",")
     // console.log(ad)
     return ad
   }
