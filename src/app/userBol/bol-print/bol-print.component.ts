@@ -53,9 +53,9 @@ export class BolPrintComponent implements OnInit {
     this.bol = {
       assginToDriverDate: bol.assginToDriverDate,
       assginedToDriver: bol.assginToDriver,
-      driverFirstName: (bol.hasOwnProperty('driver.firstName') ? bol.driver.firstName : 'No driver assign yet'),
-      driverLastName: (bol.hasOwnProperty('driver.lastName') ? bol.driver.lastName : ''),
-      driverPhoneNumber: (bol.hasOwnProperty('driver.phoneNumber') ? bol.driver.phoneNumber : ''),
+      driverFirstName: (bol.driver ? bol.driver.firstName : 'No driver assign yet'),
+      driverLastName: (bol.driver ? bol.driver.lastName : ''),
+      driverPhoneNumber: (bol.driver ? bol.driver.phoneNumber : ''),
       bolId: bol.bolId,
       bolNumber: bol.bolNumber,
       items: bol.bolItems,
