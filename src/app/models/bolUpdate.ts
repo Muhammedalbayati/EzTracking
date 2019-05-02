@@ -13,7 +13,8 @@ export class BolUpdate {
   canceledDate: Date;
   completed: Boolean;
   // items: object[];
-  comment: string;
+  userComment: string;
+  dispatcherComment: string;
   // isCrossDock:Boolean;
   crossDockAddress: string;
   // deliveryLocation: { locationName: string; locationId: number };

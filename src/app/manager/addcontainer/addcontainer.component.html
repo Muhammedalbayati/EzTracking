@@ -1,0 +1,34 @@
+<h4>{{ errorMsg }}</h4>
+<ngx-spinner color="#f97924"></ngx-spinner>
+<h4>Add container</h4>
+<hr>
+<form [formGroup]="containerForm">
+
+  <div class="row">
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">container Id</label>
+        <input type="text" class="form-control" formControlName="containerId" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Container Type</label>
+        <input type="text" class="form-control" formControlName="containerType" />
+      </div>
+    </div>
+
+  </div>
+
+</form>
+<hr>
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <button class="btn btn-success" style="margin-right: 50px;" (click)="saveClick()">Save</button>
+    <button class="btn btn-default" style="margin-right: 50px;" (click)="clearFrom()">Clear</button>
+    <button class="btn btn-danger" (click)="deleteContainer()">Delete</button>
+  </div>
+</div>
+<hr>
+<ez-containerlist [container]="containerForm" (selectedContainer)='onContainerRowClicked($event)'></ez-containerlist>

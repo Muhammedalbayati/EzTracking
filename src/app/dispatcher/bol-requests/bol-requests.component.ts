@@ -8,6 +8,7 @@ import { SignalR, SignalRConnection, IConnectionOptions, BroadcastEventListener 
 import { AddUpdateBol } from 'src/app/models/addUpdateBol';
 import { BolUpdate } from 'src/app/models/bolUpdate';
 import * as $ from 'jquery';
+import { filter } from 'rxjs/operators';
 declare let $: any;
 
 @Component({
@@ -16,8 +17,10 @@ declare let $: any;
   templateUrl: './bol-requests.component.html',
   styleUrls: ['./bol-requests.component.css']
 })
-export class BolRequestsComponent implements OnInit,AfterViewInit {
+export class BolRequestsComponent implements OnInit {
   // selectedBols: any[] = [] //// This for multipule selections 
+  filterBy: string
+  filteredBols: any[] = []
 
   bols: any[] = [];
   selectedBolId: Bol;
@@ -69,9 +72,9 @@ export class BolRequestsComponent implements OnInit,AfterViewInit {
   }
 
 
-  ngAfterViewInit(): void {
-    ($('#one') as any).selectable();
-}
+  //   ngAfterViewInit(): void {
+  //     // ($('#one') as any).selectable();
+  // }
 
   getAllBolsInfoListenerSubscriber() {
     this.getAllBolListener.subscribe(editInfoList => {
@@ -82,6 +85,53 @@ export class BolRequestsComponent implements OnInit,AfterViewInit {
 
     })
   }
+
+  filterData() {
+    this.bols.forEach(b =>
+
+      // b.bolNumber.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.userId.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.submittedDate.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.pickupLocation.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.deliveryLocation.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.vehicleType.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.userComment.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.disp.Comment.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.submitted.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.expidate.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.itmes.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+      // || b.driver.driverName.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+
+      // Object.entries(b).forEach(o => {
+      //   console.log(o)
+      // })
+
+      // Object.entries(b).forEach(([key, val]) => {
+      //   // console.log(key);          // the name of the current key.
+      //   // console.log(val);          // the value of the current key.
+      // if (key.toLocaleLowerCase().indexOf(this.filterBy) !== -1) {
+      //   console.log(key);
+      //   console.log(val);
+      // }
+      // })
+
+
+      Object.keys(b).forEach(key => {
+        // console.log(key, b[key])
+        // console.log(key, b[key])
+        if (b[key].toLocaleLowerCase().indexOf(this.filterBy) !== -1) {
+          console.log(b[key]);
+        }
+
+      })
+
+    )
+  }
+
+
+
+
+
 
 
   EditBolListenerSubscriber() {
@@ -117,7 +167,7 @@ export class BolRequestsComponent implements OnInit,AfterViewInit {
 
     if (bolId !== null || bolId !== undefined) {
       var u = this.lockedByArray.find(x => x.bolId === bolId)
-      console.log('get edit info', u)
+      // console.log('get edit info', u)
       return u
     } else {
       return null
@@ -161,7 +211,8 @@ export class BolRequestsComponent implements OnInit,AfterViewInit {
       data => {
         this.spinner.hide();
         this.bols = data;
-        console.log(data);
+        this.filteredBols = this.bols;
+        // console.log(data);
       },
       (err: any) => {
         this.spinner.hide();

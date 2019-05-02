@@ -1,6 +1,9 @@
 <div class="centered" *ngIf="result.length==0">
   <h2>No result found!</h2>
 </div>
+<div *ngIf="result.length!=0">
+  {{result.length}}
+</div>
 <ngx-spinner color="#ffbd06"></ngx-spinner>
 <div class="table-responsive row-border hover" style="width: 100%" *ngIf="result.length!=0">
   <table class="table table-striped table-sm">
@@ -13,7 +16,9 @@
         <th>Part Info</th>
         <th>PickupLocation</th>
         <th>Delivery Location</th>
-        <th>Comment</th>
+        <th>User Comment</th>
+        <th>Disp. Comment</th>
+        <th>vehicle Type</th>
         <th></th>
 
       </tr>
@@ -33,9 +38,11 @@
         <td>{{r.partInfo}}</td>
         <td>{{r.pickupLocation}}</td>
         <td>{{r.deliveryLocation}}</td>
-        <td>{{r.comment}}</td>
+        <td>{{r.userComment}}</td>
+        <td>{{r.dispatcherComment}}</td>
+        <td>{{r.vehicleType}}</td>
         <!-- <td><button type="button" class="btn btn-primary btn-sm" [routerLink]="['/bol/addbol',r.bolId]" >DETAILS</button></td> -->
-      
+
         <td>
           <i class="fas fa-edit" style="color:blueviolet" [routerLink]="['/boldetail',r.bolId]"></i>
         </td>
@@ -44,4 +51,3 @@
     </tbody>
   </table>
 </div>
-

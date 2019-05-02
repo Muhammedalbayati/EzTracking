@@ -37,7 +37,9 @@
             >Admin Panal</a
           >
         </li> -->
-
+<li>
+  <a class="nav-link" *ngIf="authServices.loggedinUserName()!=''" [routerLink]="['/addbol']" routerLinkActive="active">Create New BOL</a>
+</li>
 
       <li class="nav-item">
         <a class="nav-link" *ngIf="authServices.loggedinUserName()!=''" [routerLink]="['/loggedinUserInfo']"

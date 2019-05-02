@@ -1,0 +1,6 @@
+.rowgroup{
+    border:solid;border-width: thin; 
+    padding: 5px; align-content: center;
+    border-color: lightskyblue;
+    border-radius: 25px;
+}

@@ -1,0 +1,34 @@
+<h4>{{ errorMsg }}</h4>
+<ngx-spinner color="#f97924"></ngx-spinner>
+<h4>Add pbg</h4>
+<hr>
+<form [formGroup]="pbgForm">
+
+  <div class="row">
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">pbg Id</label>
+        <input type="text" class="form-control" formControlName="pbgId" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Pbg Type</label>
+        <input type="text" class="form-control" formControlName="pbgType" />
+      </div>
+    </div>
+
+  </div>
+
+</form>
+<hr>
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <button class="btn btn-success" style="margin-right: 50px;" (click)="saveClick()">Save</button>
+    <button class="btn btn-default" style="margin-right: 50px;" (click)="clearFrom()">Clear</button>
+    <button class="btn btn-danger" (click)="deletePbg()">Delete</button>
+  </div>
+</div>
+<hr>
+<ez-pbgslist [pbg]="pbgForm" (selectedPbg)='onPbgRowClicked($event)'></ez-pbgslist>

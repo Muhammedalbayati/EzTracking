@@ -4,6 +4,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
+
+
+
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AppRoutingModule, AppRoutedCompoenets } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -35,11 +38,7 @@ import { SidenavComponent } from "./common/sidenav/sidenav.component";
 import { UserBolModule } from "./userBol/userBol.module";
 import { DispatcherModule } from "./dispatcher/dispatcher.module";
 import { AdvanceSearchComponent } from './advance-search/advance-search.component';
-
-
-
-
-
+import { ManagerModule } from "./manager/manager.module";
 
 let toastr: Toastr = window["toastr"];
 let jQuery = window["$"];
@@ -50,8 +49,8 @@ let jQuery = window["$"];
     BolModule,
     UserBolModule,
     DispatcherModule,
+    ManagerModule,
     RouterModule,
-
 
     HttpClientModule,
     NgxSpinnerModule,
@@ -64,7 +63,6 @@ let jQuery = window["$"];
   declarations: [
 
     AppComponent,
-
     AppRoutedCompoenets,
     NavbarComponent,
     SidenavComponent,

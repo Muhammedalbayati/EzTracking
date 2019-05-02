@@ -10,7 +10,7 @@ import { Toastr, TOASTR_TOKEN } from '../toastr.service';
 })
 export class SidenavComponent implements OnInit {
 
-  toggle: boolean = true
+  toggle: boolean = false
   sideBarStyle: any = {}
   mainStyle: any = {}
 
@@ -21,12 +21,12 @@ export class SidenavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.doToggle()
   }
 
   doToggle() {
 
-    this.toggle = !this.toggle
+    // this.toggle = !this.toggle
     if (this.toggle) {
       this.sideBarStyle = { width: '200px' }
       //mainStyle to push the whole content to the right : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_push
@@ -43,7 +43,7 @@ export class SidenavComponent implements OnInit {
         padding: '1px'
       }
     }
-    console.log(this.mainStyle)
+    // console.log(this.mainStyle)
   }
 
 }

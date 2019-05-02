@@ -1,0 +1,28 @@
+<h3>Bol Requests</h3>
+
+<!-- <ag-grid-angular style="height: 350px;" class="ag-theme-balham" [gridOptions]="gridOptions" animateRows pagination
+    [rowData]="rowData" [columnDefs]="columnDefs">
+  </ag-grid-angular> -->
+
+
+  <div class="test-container">
+    <div class="test-header">Selection: <span id="selectedRows"></span></div>
+    <ag-grid-angular
+      #agGrid
+      [gridOptions]="gridOptions"
+      animateRows 
+      pagination
+      style="width: 100%; height: 100%;"
+      id="myGrid"
+      class="ag-theme-balham"
+      [columnDefs]="columnDefs"
+      [rowSelection]="rowSelection"
+      [rowData]="rowData"
+      (selectionChanged)="onSelectionChanged($event)"
+      (gridReady)="onGridReady($event)"
+      
+    ></ag-grid-angular>
+  </div>
+
+  
+  <ez-dispatcher-bol-view></ez-dispatcher-bol-view>

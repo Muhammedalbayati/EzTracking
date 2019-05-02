@@ -20,6 +20,26 @@ export class CargoService {
       .pipe(catchError(this.handleError));
   }
 
+  addCargo(cargo: any): Observable<any> {
+    console.log(cargo)
+    return this.http
+      .post<Cargo>(cargoUrl + '', cargo)
+      .pipe(catchError(this.handleError));
+  }
+
+
+  updateCargo(cargo: any): Observable<any> {
+    console.log(cargo)
+    return this.http
+      .patch<Cargo>(cargoUrl + '/updateCargo/' + cargo.cargoId, cargo)
+      .pipe(catchError(this.handleError))
+  }
+
+  deleteCargo(cargoId) {
+    return this.http.delete(cargoUrl + "/deleteCargo/" + cargoId)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

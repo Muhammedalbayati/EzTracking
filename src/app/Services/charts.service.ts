@@ -5,6 +5,8 @@ import { CONFIG } from '../config';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import * as moment from "moment";
+import { Last12MonthsChart } from '../models/Last12MonthsChart';
+
 
 const chartsUrl = CONFIG.Urls.charts;
 
@@ -24,6 +26,12 @@ export class ChartsService {
   getChartData(data:any): Observable<BldgsChart[]> {
 
     return this.http.post<BldgsChart[]>(chartsUrl + '/completed/', data)
+      .pipe(catchError(this.handleError));
+  }
+
+  getLast12MonthsChartData(): Observable<Last12MonthsChart[]> {
+
+    return this.http.get<Last12MonthsChart[]>(chartsUrl + '/last12MonthsChart/')
       .pipe(catchError(this.handleError));
   }
 

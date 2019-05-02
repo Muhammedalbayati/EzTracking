@@ -1,0 +1,33 @@
+<h3>{{ errorMsg }}</h3>
+<h4>Buildings Locations List <small>* You may need to refresh the page to see the changes.</small> </h4>
+<ngx-spinner color="#f97924"></ngx-spinner>
+<!-- class="table-responsive" -->
+<div class="table-responsive row-border hover" style="width: 100%">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>locationId</th>
+        <th>locationName</th>
+        <th>building</th>
+        <th>address</th>
+        <th>city</th>
+        <th>phone</th>
+        <th>state</th>
+        <th>zip</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- | async -->
+      <tr *ngFor="let l of bldgLocations" (click)="onRowClick(l)" style="cursor: pointer;">
+        <td>{{l.locationId}}</td>
+        <td>{{l.locationName}}</td>
+        <td>{{l.building}}</td>
+        <td>{{l.address}}</td>
+        <td>{{l.city}}</td>
+        <td>{{l.phone}}</td>
+        <td>{{l.state}}</td>
+        <td>{{l.zip}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

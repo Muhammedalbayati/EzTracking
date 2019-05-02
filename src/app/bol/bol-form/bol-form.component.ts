@@ -65,7 +65,7 @@ export class BolFormComponent implements OnInit {
       canceled: false,
       canceledDate: '',
       space: 0,
-      comment: '',
+      userComment: '',
       deliveryLocation: '',
       pickupLocation: '',
       vehicle: ''
@@ -152,7 +152,7 @@ export class BolFormComponent implements OnInit {
     var _bol = new AddUpdateBol();
     _bol.bolId = formValues.bolId;
     _bol.requesterId = formValues.requesterId;
-    _bol.comment = formValues.comment;
+    _bol.userComment = formValues.userComment;
     _bol.deliveryLocationId = formValues.deliveryLocation;
     _bol.pickupLocationId = formValues.pickupLocation;
     _bol.vehicleId = formValues.vehicle;
@@ -246,7 +246,7 @@ export class BolFormComponent implements OnInit {
 
   readyToSubmit() {
 
-    if (this.bolForm.controls.bolId.value == 0  ) {
+    if (this.bolForm.controls.bolId.value == 0) {
       return { disabled: true }
     } else {
       return { disabled: false }

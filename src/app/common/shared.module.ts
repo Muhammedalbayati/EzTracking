@@ -14,6 +14,8 @@ import { SignalRModule, SignalR } from 'ng2-signalr';
 import { SignalRConfiguration } from 'ng2-signalr';
 import { SignalrService } from '../Services';
 import { ChartComponent } from './chart/chart.component';
+import { FilterPipe } from './filter.pipe';
+
 
 
 export function createConfig(): SignalRConfiguration {
@@ -38,9 +40,10 @@ export function createConfig(): SignalRConfiguration {
     SimpleModalComponent,
     SearchBoxComponent,
     HoverOverTextDirective,
-    ChartComponent
+    ChartComponent,
+    FilterPipe,
   ],
   // providers: [SignalrService],
-  exports: [SimpleModalComponent,ChartComponent, ModalTriggerDirective, SearchBoxComponent, HoverOverTextDirective]
+  exports: [SimpleModalComponent, ChartComponent, ModalTriggerDirective, SearchBoxComponent, HoverOverTextDirective,FilterPipe]
 })
 export class SharedModule { }

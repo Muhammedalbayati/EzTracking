@@ -38,7 +38,8 @@
         <th>PickupLocation</th>
         <th>Delivery Location</th>
         <th>VehicleType</th>
-        <th>Comment</th>
+        <th>User Comment</th>
+        <th>Disp.Comment</th>
         <th>Submitted</th>
         <th>itmes</th>
         <th>Driver</th>
@@ -55,7 +56,8 @@
             <a  routerLink="['/addbol',bol.bolId]">{{bol.bolId}}</a>
           </td>
         -->
-        <td title="{{ bol.bolNumber }}">{{ bol.bolNumber }}</td>
+        <td title="{{ bol.bolNumber }}" data-toggle="modal" (click)="handleSelectedBol(bol)" data-target="#exampleModal"
+          style="color:blueviolet;cursor: pointer;">{{ bol.bolNumber }}</td>
         <td title="{{bol.requesterId}}">{{ bol.requesterId }}</td>
         <td title="{{ bol.submittedDate | date: 'short'}}">{{ bol.submittedDate | date: "short" }}</td>
         <td title="{{bol.completedDate | date: 'short'}}">{{bol.completedDate | date: "short" }}</td>
@@ -63,18 +65,20 @@
         <td>{{ bol.deliveryLocation.locationName }}</td>
         <td>{{ bol.vehicle.vehicleType }}</td>
         <!-- ezHoverOverText -->
-        <td id="comment" title="{{bol.comment}}">{{ bol.comment }} </td>
+        <td id="userComment" title="{{bol.userComment}}">{{ bol.userComment }} </td>
+        <td id="dispatcherComment" title="{{bol.dispatcherComment}}">{{ bol.dispatcherComment }} </td>
         <td> <i [ngClass]="{'fas fa-check':bol.submitted}"></i> </td>
         <td>{{ bol.bolItems.length }}</td>
         <td title="{{ bol.driver?.firstName + bol.driver?.lastName +  bol.driver?.phoneNumber }}">{{
           bol.driver?.firstName + bol.driver?.lastName }}</td>
         <td>
-          <i [routerLink]="['/bolreq-details', bol.bolId]" class="fas fa-edit" style="color:blueviolet ; cursor: pointer;">
+          <i [routerLink]="['/bolreq-details', bol.bolId]" class="fas fa-edit"
+            style="color:blueviolet ; cursor: pointer;">
           </i>
         </td>
         <td>
-          <i class="fas fa-hammer" data-toggle="modal" style="color:blueviolet ;cursor: pointer;" data-target="#exampleModal"
-            (click)="handleSelectedBol(bol)"></i>
+          <i class="fas fa-hammer" data-toggle="modal" (click)="handleSelectedBol(bol)" data-target="#exampleModal" style="color:blueviolet ;cursor: pointer;" 
+            ></i>
         </td>
 
       </tr>
@@ -86,8 +90,9 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Actions</h5>
@@ -103,4 +108,26 @@
 
     </div>
   </div>
-</div>
+</div> -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    data-backdrop="static" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dismissModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <ez-actions [bolId]="selectedBolId"></ez-actions>
+
+        </div>
+
+      </div>
+    </div>
+  </div>

@@ -1,12 +1,15 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Inject, ViewChild } from '@angular/core';
 import { DriversService } from 'src/app/Services/drivers.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EzDriver } from 'src/app/models/ezDriver';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BolService } from 'src/app/Services';
 import * as moment from "moment";
+import * as momentTz from 'moment-timezone';
+
 
 import { SignalR, SignalRConnection, IConnectionOptions, BroadcastEventListener } from 'ng2-signalr';
+import { JQ_TOKEN } from 'src/app/common';
 
 @Component({
   selector: 'ez-actions',
@@ -14,9 +17,12 @@ import { SignalR, SignalRConnection, IConnectionOptions, BroadcastEventListener 
   styleUrls: ['./actions.component.css']
 })
 export class ActionsComponent implements OnInit, OnDestroy {
+  // @ViewChild('dayPicker') datePicker: DatePickerComponent;
+  selectedDate: any
   drivers: EzDriver[] = [];
   errorMsg: any;
   actionsForm: FormGroup;
+  defaultTime: any
   bol: any
   _bol: any
   signalrErrMsgs: any[] = []
@@ -51,16 +57,25 @@ export class ActionsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private bolService: BolService,
     private driverService: DriversService,
-    private spinner: NgxSpinnerService) { }
-
-  ngOnInit() {
+    private spinner: NgxSpinnerService,
+    @Inject(JQ_TOKEN) private $: any
+  ) {
     this.getDrivers()
 
+  }
+
+  ngOnInit() {
+
+
     this.actionsForm = this.fb.group({
+      dispatchTime: null,
       driver: null,
-      comment: null,
-      cancelBol: false,
+      userComment: [{ value: null, disabled: true }],
+      dispatcherComment: [{ value: null }],
+      canceled: false,
+      canceledDate: null,
       completed: false,
+      completedDate: null,
       receivedBy: null,
       receivedDate: null,
       receivedAtLocation: null,
@@ -70,7 +85,11 @@ export class ActionsComponent implements OnInit, OnDestroy {
       pickupDepartureDate: null,
       deliveryArrival: false,
       deliveryArrivalDate: null,
+      crossDockAddress: [{ value: null, disabled: true }],
+      submittedDate: null
     })
+
+
 
     //3. start connection
     this.connection.start();
@@ -86,6 +105,20 @@ export class ActionsComponent implements OnInit, OnDestroy {
 
   }
 
+  getDefaultTime(ctrlName) {
+    // var md = moment.utc()
+    // var date = new Date()
+    //var stillUtc = moment.utc().toDate();
+    
+    var dateTime = moment().format("MM/DD/YYYY, HH:mm"); //moment(stillUtc).format('YYYY-MM-DDThh:mm');
+
+    Object.keys(this.actionsForm.controls).forEach(key => {
+      if (key === ctrlName) {
+        this.actionsForm.controls[ctrlName].setValue(dateTime)
+      }
+    });
+
+  }
   ngOnDestroy() {
     // this.connection.stop();
     this.signalrEditBol('unlock')
@@ -111,29 +144,33 @@ export class ActionsComponent implements OnInit, OnDestroy {
 
 
   fillTheForm() {
-
     this.actionsForm.reset();
     this.actionsForm.patchValue({
+      dispatchTime: this.bol.dispatchTime,
       driver: this.bol.driverId,
       completed: this.bol.completed,
-      cancelBol: this.bol.cancelBol,
-      comment: this.bol.comment,
+      completedDate: this.bol.completedDate,
+      canceled: this.bol.canceled,
+      canceledDate: this.bol.canceledDate,
+      userComment: this.bol.userComment,
+      dispatcherComment: this.bol.dispatcherComment,
       receivedBy: this.bol.receivedBy,
       receivedDate: this.bol.receivedDate,
       receivedAtLocation: this.bol.receivedAtLocation,
-      pickupArrival: this.bol.pickupArrival,
+      // pickupArrival: this.bol.pickupArrival,
       pickupArrivalDate: this.bol.pickupArrivalDate,
-      pickupDeparture: this.bol.pickupDeparture,
+      // pickupDeparture: this.bol.pickupDeparture,
       pickupDepartureDate: this.bol.pickupDepartureDate,
-      deliveryArrival: this.bol.deliveryArrival,
+      // deliveryArrival: this.bol.deliveryArrival,
       deliveryArrivalDate: this.bol.deliveryArrivalDate,
-
-
+      crossDockAddress: this.bol.crossDockAddress,
+      submittedDate: this.bol.submittedDate
     });
     // this.signalrConnect();
     // this.signalrEditBol(true)
 
   }
+
 
   signalrEditBol(bolStatus: string) {
     var user = JSON.parse(localStorage.getItem('userInfo'))
@@ -161,13 +198,15 @@ export class ActionsComponent implements OnInit, OnDestroy {
         console.log('getBolById', data);
         this.bol = data;
         this._bol = data;
-        this.fillTheForm()
       },
       (err: any) => {
         this.spinner.hide();
         this.errorMsg = err;
+      },
+      () => {
+        this.fillTheForm()
       }
-    );
+    )
   }
 
 
@@ -193,123 +232,81 @@ export class ActionsComponent implements OnInit, OnDestroy {
   // }
 
   cancelBol() {
-    console.log(this.bol)
-    // var _bol=this.bol;//keep a copy
+    var d = moment().format("MM/DD/YYYY, HH:mm")// moment().format("MM/DD/YYYY, h:mm:ss a");
 
-    var d = moment().format("MM/DD/YYYY, h:mm:ss a");
-    if (this.actionsForm.controls.cancelBol.value) {
-      this.actionsForm.controls.completed.patchValue(false)
-      this.bol.canceled = true;
-      this.bol.canceledDate = d;
-      this.bol.submittedDate = null;
-      this.bol.submitted = false;
-      this.bol.completed = false;
-      this.bol.completedDate = null;
-
+    if (this.actionsForm.controls.canceled.value) {
+      this.actionsForm.patchValue({
+        canceled: true,
+        canceledDate: d,
+        completed: false,
+        completedDate: null
+      })
     } else {
-      this.bol.canceled = false;
-      this.bol.canceledDate = null;
-      // this.bol.submittedDate = _bol.submittedDate;
-      // this.bol.submitted = _bol.submitted;
-      // this.bol.completed = _bol.completed;
-      // this.bol.completedDate = _bol.completedDate;
+      this.actionsForm.patchValue(
+        {
+          canceled: false,
+          canceledDate: null,
+          completed: this._bol.completed,
+          completedDate: this._bol.completedDate,
+        }
+      )
     }
   }
 
-  pickedup() {
 
-    var d = moment().format("MM/DD/YYYY, h:mm:ss a");
-    if (this.actionsForm.controls.pickupArrival.value) {
-      this.bol.pickupArrival = true;
-      this.bol.pickupArrivalDate = (this.bol.pickupArrivalDate == null ? d : this._bol.pickupArrivalDate);
-    } else {
-      this.bol.pickupArrival = false;
-      this.bol.pickupArrivalDate = null;
-    }
-    // console.log(this.actionsForm.controls.pickupArrival.value)
-  }
 
-  Delivered() {
-    var d = moment().format("MM/DD/YYYY, h:mm:ss a");
-    this.bol.Delivered = true
-    this.bol.DeliveredDate = d
-  }
-
-  completeBol() {
+  completedBol() {
     console.log("complete bol", this.bol)
     var _bol = this.bol;
-    var d = moment().format("MM/DD/YYYY, h:mm:ss a");
+    var d = moment().format("MM/DD/YYYY, HH:mm") //moment().format("MM/DD/YYYY, h:mm:ss a");
     if (this.actionsForm.controls.completed.value) {
-      this.actionsForm.controls.cancelBol.patchValue(false)
-      this.bol.completed = true;
-      this.bol.completedDate = this.bol.completedDate === '' ? _bol.completedDate : d;
-      this.bol.canceled = false;
-      this.bol.canceledDate = null;
+      this.actionsForm.patchValue({
+        canceled: false,
+        canceledDate: null,
+        completed: true,
+        completedDate: d
+      })
     } else {
-      this.bol.completed = false;
-      this.bol.completedDate = null;
+      this.actionsForm.patchValue({
+        canceled: this._bol.canceled,
+        canceledDate: this._bol.canceledDate,
+        completed: false,
+        completedDate: null
+      })
     }
   }
 
-  // actionFormValues() {
-  //   console.log("cancel bol", this.actionsForm.controls.driver.value)
-  //   var d = moment().format("MM/DD/YYYY, h:mm:ss a");
-
-  //   if (this.actionsForm.controls.cancelBol.value) {
-  //     this._bol.canceled = true;
-  //     this._bol.canceledDate = d;
-  //     this.bol.submittedDate = null;
-  //     this.bol.submitted = false;
-  //   } else {
-  //     this.bol.canceled = false;
-  //     this.bol.canceledDate = null;
-  //   }
-
-  //   if (this.actionsForm.controls.completed.value) {
-  //     this.bol.submittedDate = d;
-  //     this.bol.submitted = true;
-  //     this.bol.canceled = false;
-  //     this.bol.canceledDate = null;
-  //   } else {
-  //     this.bol.submittedDate = null;
-  //     this.bol.submitted = false;
-  //   }
-
-  //   this.bol.driverId = this.actionsForm.controls.driver.value;
-  //   this.bol.deliveryLocationId = this.bol.deliveryLocation.locationId;
-  //   this.bol.pickupLocationId = this.bol.pickupLocation.locationId;
-  //   this.bol.vehicleId = this.bol.vehicle.vehicleId
-  //   this.bol.cargoId = this.bol.cargo.cargoId
-  // }
 
   saveChanges() {
-    var d = moment().format("MM/DD/YYYY, h:mm:ss a");
-    if (this.actionsForm.controls.pickupArrival.value) {
-      this.bol.pickupArrival = true;
-      this.bol.pickupArrivalDate = (this.bol.pickupArrivalDate == null ? d : this._bol.pickupArrivalDate);
-    } else {
-      this.bol.pickupArrival = false;
-      this.bol.pickupArrivalDate = null;
-    }
+    var d = moment().format("MM/DD/YYYY, HH:mm")// moment().format("MM/DD/YYYY, h:mm:ss a");
 
-    if (this.actionsForm.controls.completed.value) {
-      this.actionsForm.controls.cancelBol.patchValue(false)
-      this.bol.completed = true;
-      this.bol.completedDate = this.bol.completedDate === '' ? this._bol.completedDate : d;
-      this.bol.canceled = false;
-      this.bol.canceledDate = null;
-    } else {
-      this.bol.completed = false;
-      this.bol.completedDate = null;
-    }
+    this.bol.pickupArrivalDate = this.actionsForm.controls.pickupArrivalDate.value
+    this.bol.pickupDepartureDate = this.actionsForm.controls.pickupDepartureDate.value
+    this.bol.dispatchTime = this.actionsForm.controls.dispatchTime.value
+    this.bol.deliveryArrivalDate = this.actionsForm.controls.deliveryArrivalDate.value
 
     this.bol.driverId = this.actionsForm.controls.driver.value
     this.bol.receivedBy = this.actionsForm.controls.receivedBy.value
+    this.bol.dispatchTime = this.actionsForm.controls.dispatchTime.value
+    this.bol.receivedDate = this.actionsForm.controls.receivedDate.value
+
+    this.bol.canceled = this.actionsForm.controls.canceled.value
+    this.bol.canceledDate = this.actionsForm.controls.canceledDate.value
+    this.bol.completed = this.actionsForm.controls.completed.value
+    this.bol.completedDate = this.actionsForm.controls.completedDate.value
+
+    this.bol.dispatcherComment = this.actionsForm.controls.dispatcherComment.value
+
     // this.bol.deliveryLocationId = this.bol.deliveryLocation.locationId;
     // this.bol.pickupLocationId = this.bol.pickupLocation.locationId;
     // this.bol.vehicleId = this.bol.vehicle.vehicleId
     // this.bol.cargoId = this.bol.cargo.cargoId
-    this.bol.comment = this.actionsForm.controls.comment.value
+
+    if (this.actionsForm.controls.canceled.value) {
+      this.bol.submittedDate = null
+      this.bol.submitted = false
+    }
+
     console.log(this.bol)
     this.errorMsg = "";
     this.spinner.show();

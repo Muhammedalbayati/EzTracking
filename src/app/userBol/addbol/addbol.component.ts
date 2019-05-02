@@ -45,34 +45,11 @@ export class AddbolComponent implements OnInit {
   errorMsg;
   itemId: number;
   idx: number;
-  // signalrMsgs: any[] = []
 
   //1. create connection
   connection = this._signalR.createConnection();
   // 2.create a listener object
   bolListener = new BroadcastEventListener<any>('CancelBol');
-
-
-  // bolId: FormControl = new FormControl({ value: 0, disabled: true });
-  // requesterId: FormControl = new FormControl({ value: "", disabled: true });
-  // recipient: FormControl = new FormControl();
-  // expidate: FormControl = new FormControl(0);
-  // submitted: FormControl = new FormControl(false);
-  // submittedDate: FormControl = new FormControl("");
-  // comment: FormControl = new FormControl();
-  // canceled: FormControl = new FormControl(false);
-  // canceledDate: FormControl = new FormControl("");
-
-  // space: FormControl = new FormControl("", [
-  //   Validators.required,
-  //   Validators.min(1),
-  //   Validators.max(12)
-  // ]);
-
-  // deliveryLocation: FormControl = new FormControl("", Validators.required);
-  // pickupLocation: FormControl = new FormControl();
-
-  // vehicle: FormControl = new FormControl();
 
   constructor(
     private _signalR: SignalR,
@@ -119,7 +96,8 @@ export class AddbolComponent implements OnInit {
       canceled: false,
       canceledDate: null,
       space: [0, [Validators.required, Validators.min(1), Validators.max(20)]],
-      comment: null,
+      userComment: null,
+      dispatcherComment: null,
       deliveryLocation: [null, [Validators.required]],
       pickupLocation: [null, [Validators.required]],
       vehicle: [null, [Validators.required]],
@@ -137,58 +115,11 @@ export class AddbolComponent implements OnInit {
 
     this.hideOrShowExternalCheckBox();
 
-    // console.log('selectedDeliveryLocation ', this.selectedDeliveryLocation)
-
-    // if (this.bolForm.controls['deliveryLocation'].value == null) return
-    // this.bolForm.controls['deliveryLocation'].valueChanges.subscribe(val => {
-
-    //   console.log('val',val)
-    //   if (val == '1003') {
-    //     // this.bolForm.controls['deliveryLocation'].clearValidators();
-    //     // this.bolForm.controls['deliveryLocation'].disable();
-    //     // // this.bolForm.controls['deliveryLocation'].patchValue({value:'CrossDock'})
-    //     // this.bolForm.controls['deliveryLocation'].updateValueAndValidity();
-
-
-
-    //     this.bolForm.controls['crossDockAddress'].clearValidators();
-    //     this.bolForm.controls['crossDockAddress'].enable();
-    //     this.bolForm.controls['crossDockAddress'].setValidators(Validators.required)
-    //     this.bolForm.controls['crossDockAddress'].updateValueAndValidity();
-
-    //   } else {
-    //     // this.bolForm.controls['deliveryLocation'].clearValidators();
-    //     // this.bolForm.controls['deliveryLocation'].enable();
-    //     // // this.bolForm.controls['deliveryLocation'].patchValue({ value: null });
-    //     // this.bolForm.controls['deliveryLocation'].updateValueAndValidity();
-
-    //     this.bolForm.controls['crossDockAddress'].clearValidators();
-    //     this.bolForm.controls['crossDockAddress'].disable();
-    //     this.bolForm.controls['crossDockAddress'].patchValue(null)
-    //     // this.bolForm.controls['crossDockAddress'].setValidators(Validators.required)
-    //     this.bolForm.controls['crossDockAddress'].updateValueAndValidity();
-    //   }
-
-    // })
-
-    // if(this.bolForm.controls['deliveryLocation'].value)
-
   }
-
-  // signalrConnect() {
-  //   //6. listen for connection errors
-  //   this.connection.errors.subscribe((error: any) => {
-  //     this.signalrMsgs.push(error);
-  //   });
-  // }
-
-
 
   hideOrShowExternalCheckBox() {
     // console.log(this.userInfo.roles.includes('Admin','Dispatcher'))
     return this.userInfo.roles.includes('Admin') || this.userInfo.roles.includes('Dispatcher')
-
-
   }
 
   getSelectedOptionText(event: Event) {
@@ -256,7 +187,8 @@ export class AddbolComponent implements OnInit {
       canceledDate: bol.canceledDate,
       completed: bol.completed,
       space: bol.space,
-      comment: bol.comment,
+      userComment: bol.userComment,
+      dispatcherComment: bol.dispatcherComment,
       deliveryLocation: bol.deliveryLocation.locationId, //{locationId:bol.deliveryLocation.locationId,locationName: bol.deliveryLocation.locationName},
       pickupLocation: bol.pickupLocation.locationId,
       vehicle: bol.vehicle.vehicleId,
@@ -386,7 +318,8 @@ export class AddbolComponent implements OnInit {
     _bol.bolNumber = formValues.bolNumber;
     _bol.externalBol = formValues.externalBol;
     _bol.requesterId = formValues.requesterId;
-    _bol.comment = formValues.comment;
+    _bol.userComment = formValues.userComment;
+    _bol.dispatcherComment = formValues.dispatcherComment;
     _bol.deliveryLocationId = formValues.deliveryLocation;
     _bol.pickupLocationId = formValues.pickupLocation;
     _bol.vehicleId = formValues.vehicle;
@@ -467,7 +400,7 @@ export class AddbolComponent implements OnInit {
   }
 
   submitBol() {
-    var d = moment().format("MM/DD/YYYY, h:mm:ss a");
+    var d = moment().format("MM/DD/YYYY, HH:mm")//moment().format("MM/DD/YYYY, h:mm:ss a");
     this.bolForm.controls.submittedDate.patchValue(d);
     this.bolForm.controls.submitted.patchValue(true);
     this.bolForm.controls.canceledDate.patchValue(null);
@@ -477,12 +410,12 @@ export class AddbolComponent implements OnInit {
 
   cancelBol() {
     console.log("cancel bol")
-    var d = moment().format("MM/DD/YYYY, h:mm:ss a");
+    var d = moment().format("MM/DD/YYYY, HH:mm")//moment().format("MM/DD/YYYY, h:mm:ss a");
     this.bolForm.controls.submittedDate.patchValue(null);
     this.bolForm.controls.submitted.patchValue(false);
     this.bolForm.controls.canceled.patchValue(true);
     this.bolForm.controls.canceledDate.patchValue(d);
-    this.connection.invoke('CancelBol', {BolId: this.bolForm.controls.bolId})
+    this.connection.invoke('CancelBol', { BolId: this.bolForm.controls.bolId })
     this.saveBol();
   }
 

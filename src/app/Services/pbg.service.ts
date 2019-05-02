@@ -20,6 +20,26 @@ export class PbgService {
       .pipe(catchError(this.handleError));
   }
 
+
+  addPbg(pbg: any): Observable<any> {
+    console.log(pbg)
+    return this.http
+      .post<Pbg>(pbgsUrl + '/addPbg', pbg)
+      .pipe(catchError(this.handleError));
+  }
+
+  updatePbg(Pbg: any): Observable<any> {
+    console.log(Pbg)
+    return this.http
+      .patch<Pbg>(pbgsUrl + '/updatePbg/' + Pbg.pbgId, Pbg)
+      .pipe(catchError(this.handleError))
+  }
+
+  deletePbg(pbgId) {
+    return this.http.delete(pbgsUrl + "/deletePbg/" + pbgId)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

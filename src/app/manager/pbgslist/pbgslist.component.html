@@ -1,0 +1,22 @@
+<h3>{{ errorMsg }}</h3>
+<h4>PBGs List <small>* You may need to refresh the page to see the changes.</small> </h4>
+<ngx-spinner color="#f97924"></ngx-spinner>
+<!-- class="table-responsive" -->
+<div class="table-responsive row-border hover" style="width: 100%">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>PbgId</th>
+        <th>Pbg Type</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <!-- | async -->
+      <tr *ngFor="let d of pbgs" (click)="onRowClick(d)" style="cursor: pointer;">
+        <td>{{d.pbgId}}</td>
+        <td>{{d.pbgType}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

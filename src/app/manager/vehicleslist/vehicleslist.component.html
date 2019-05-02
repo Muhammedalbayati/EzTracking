@@ -1,0 +1,22 @@
+<h3>{{ errorMsg }}</h3>
+<h4>Vehicle List <small>* You may need to refresh the page to see the changes.</small> </h4>
+<ngx-spinner color="#f97924"></ngx-spinner>
+<!-- class="table-responsive" -->
+<div class="table-responsive row-border hover" style="width: 100%">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>VehicleId</th>
+        <th>Vehicle Type</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <!-- | async -->
+      <tr *ngFor="let d of vehicles" (click)="onRowClick(d)" style="cursor: pointer;">
+        <td>{{d.vehicleId}}</td>
+        <td>{{d.vehicleType}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

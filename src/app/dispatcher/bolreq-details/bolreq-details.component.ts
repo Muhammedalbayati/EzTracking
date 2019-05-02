@@ -12,4 +12,6 @@ export class BolreqDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  
 }

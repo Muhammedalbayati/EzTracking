@@ -22,6 +22,25 @@ export class ContainerService {
       .pipe(catchError(this.handleError));
   }
 
+  addContainer(container: any): Observable<any> {
+    console.log(container)
+    return this.http
+      .post<Container>(containerUrl + '/addContainer', container)
+      .pipe(catchError(this.handleError));
+  }
+  
+
+  updateContainer(Container: any): Observable<any> {
+    console.log(Container)
+    return this.http
+      .patch<Container>(containerUrl + '/updateContainer/' + Container.containerId, Container)
+      .pipe(catchError(this.handleError))
+  }
+
+  deleteContainer(containerId) {
+    return this.http.delete(containerUrl + "/deleteContainer/" + containerId)
+      .pipe(catchError(this.handleError));
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

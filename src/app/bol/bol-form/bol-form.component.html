@@ -96,8 +96,8 @@
         <div class="row">
           <div class="col-md-12 col-lg-12">
             <div class="form-group">
-              <label class="control-label">Comment</label>
-              <textarea class="form-control" formControlName="comment" id="comment"></textarea>
+              <label class="control-label">userComment</label>
+              <textarea class="form-control" formControlName="userComment" id="userComment"></textarea>
             </div>
           </div>
         </div>
@@ -106,23 +106,24 @@
           <!-- <div class="col left">left</div> -->
 
           <div class="btn-toolbar">
-            <button type="submit" id="save" class="btn btn-primary btn-xs mr-2" [disabled]="!bolForm.valid">Save</button>
+            <button type="submit" id="save" class="btn btn-primary btn-xs mr-2"
+              [disabled]="!bolForm.valid">Save</button>
             <!-- <button type="button" class="btn btn-default btn-xs" (click)="cancel(eventForm)">Cancel</button> -->
 
             <!-- <button type="button" id="addItem" class="btn btn-success btn-xs mr-2" [disabled]="bolId.value==0 || submitted.value"
               modal-trigger="addItemModal">Add
               Item</button> -->
 
-            <button type="button" id="delete" class="btn text-dark btn-xs mr-2" 
-              modal-trigger="cancelBolModal">Cancel Bol</button>
+            <button type="button" id="delete" class="btn text-dark btn-xs mr-2" modal-trigger="cancelBolModal">Cancel
+              Bol</button>
           </div>
 
-          <button type="button" 
-          class="btn btn-lg" style="background-color: orange" [ngClass]="readyToSubmit()" (click)="submitBol()">Submit
-        </button>
-                
+          <button type="button" class="btn btn-lg" style="background-color: orange" [ngClass]="readyToSubmit()"
+            (click)="submitBol()">Submit
+          </button>
+
           <div class="col text-right">
-            <button type="button" id="delete" class="btn btn-danger btn-xs"  modal-trigger="deleteBolModal">Delete
+            <button type="button" id="delete" class="btn btn-danger btn-xs" modal-trigger="deleteBolModal">Delete
               Bol</button>
           </div>
 
@@ -133,12 +134,12 @@
 
     </div>
     <div class="card card-default">
-      <h4 class="text-center"  style="color:green">BOL been submitted</h4>
+      <h4 class="text-center" style="color:green">BOL been submitted</h4>
       <div class="card-body">
 
       </div>
     </div>
-    
+
   </form>
 </div>
 

@@ -37,3 +37,7 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.modal-lg {
+  max-width: 70% !important;
+}

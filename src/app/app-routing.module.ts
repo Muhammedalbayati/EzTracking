@@ -29,13 +29,13 @@ const routes: Routes = [
   { path: "loggedinUserInfo", component: LoggedinUserInfoComponent },
   { path: "resetpassword/:userId/:code", component: ResetpasswordComponent },
   {
-    path: "searchresult", // path: "search/:searchTerm",
+    path: "searchresult", 
     component: SearchResultComponent,
     canActivate: [AuthGuard],
     data: { roles: ["Admin", "Manager", "Dispatcher", "Employee"] }
   },
   {
-    path: "advanceSearch", // path: "search/:searchTerm",
+    path: "advanceSearch", 
     component: AdvanceSearchComponent,
     canActivate: [AuthGuard],
     data: { roles: ["Admin", "Manager", "Dispatcher", "Employee"] }

@@ -15,13 +15,16 @@ export class ChartComponent implements OnInit, AfterViewInit {
   errorMsg: any
 
   @ViewChild('myChart') myChartEle: ElementRef;
-  _lblArray: any[] = []
   _chartData: any[] = []
+  _chartLabels: any[] = []
+
   @Input()
   set chartData(val: any) {
     console.log('val', val)
     if (val != null || val != undefined) {
-      this._chartData = val
+      val.forEach(d => {
+        this._chartData.push(d)
+      });
       this.myChart()
     }
   }
@@ -43,12 +46,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
     return this._chartType
   }
 
-  _chartLabels: any
+
   @Input()
   set chartLabels(val: any) {
-    console.log('val', val)
+    // console.log('val', val)
     if (val != null || val != undefined) {
-      this._chartLabels = val
+      val.forEach(l => {
+        this._chartLabels.push(l)
+      });
+
     }
   }
 
@@ -70,8 +76,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
   myChart() {
 
 
-    var lbls = this.chartData.map(function (x) { return x.pickupLocation })
-    var data = this.chartData.map(function (x) { return x.bolsCount })
+    // var lbls = this.chartData.map(function (x) { return x.pickupLocation })
+    // var lbls = this._chartLabels
+    // var data = this._chartData
+    // console.log(this._chartLabels)
     //*****************************/
     // var counts = this.chartData.reduce((p, c) => {
     //   var name = c.pickupLocation.toUpperCase();
@@ -87,9 +95,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
     var myChart = new Chart(ctx, {
       type: this.chartType || 'pie', //'bar',
       data: {
-        labels: lbls,
+        labels: this._chartLabels,
         datasets: [{
-          data: data,
+          // label:this.chartLabels,
+          data: this._chartData,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',

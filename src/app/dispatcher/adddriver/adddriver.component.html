@@ -1,0 +1,82 @@
+<h4>{{ errorMsg }}</h4>
+<ngx-spinner color="#f97924"></ngx-spinner>
+<h4>Add Driver</h4>
+<hr>
+<form [formGroup]="driverForm" #driverCom>
+
+  <div class="row">
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Driver Id</label>
+        <input type="text" class="form-control" formControlName="driverId" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">First Name</label>
+        <input type="text" class="form-control" formControlName="firstName" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Last Name</label>
+        <input type="text" class="form-control" formControlName="lastName" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Phone Number</label>
+        <input type="text" class="form-control" formControlName="phoneNumber" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">email</label>
+        <input type="text" class="form-control" formControlName="email" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <label for="shift">Shift</label>
+      <select class="form-control" formControlName="shift" id="shift">
+        <option>1st</option>
+        <option>2nd</option>
+        <option>3rd</option>
+      </select>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">signUpDate</label>
+        <input type="text" class="form-control" formControlName="signUpDate" />
+      </div>
+    </div>
+
+
+    <div class="col-md-3 col-lg-3">
+      <label for="textarea" class="control-label">Active</label> <br>
+      <label class="switch">
+        <input type="checkbox" formControlName="active">
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+  </div>
+
+</form>
+<hr>
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <button class="btn btn-success" style="margin-right: 50px;" (click)="saveClick()">Save</button>
+    <button class="btn btn-danger" (click)="deleteDriver()">Delete</button>
+  </div>
+</div>
+<hr>
+<ez-driverslist [ezDriver]="driverForm" (selectedDriver)='onDriverRowClicked($event)'></ez-driverslist>

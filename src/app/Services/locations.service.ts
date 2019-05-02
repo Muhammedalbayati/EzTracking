@@ -26,6 +26,28 @@ export class LocationsService {
       .pipe(catchError(this.handleError));
   }
 
+
+  addBuilding(bldg: any): Observable<any> {
+    console.log(bldg)
+    return this.http
+      .post<BldgLocation>(locationsUrl + '/addLocation', bldg)
+      .pipe(catchError(this.handleError));
+  }
+
+
+
+  updateBulding(Bulding: any): Observable<any> {
+    console.log(Bulding)
+    return this.http
+      .patch<BldgLocation>(locationsUrl + '/updateLocation/' + Bulding.locationId, Bulding)
+      .pipe(catchError(this.handleError))
+  }
+
+  deleteBulding(BuldingId) {
+    return this.http.delete(locationsUrl + "/deleteLocation/" + BuldingId)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

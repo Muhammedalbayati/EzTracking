@@ -1,4 +1,5 @@
 export const CONFIG = {
+  //  Azure
   // Urls: {
   //   serverUrl: "https://ezwebapi.azurewebsites.net",
   //   baseApiUrl: "https://ezwebapi.azurewebsites.net/api",
@@ -8,6 +9,8 @@ export const CONFIG = {
   //   locations: "https://ezwebapi.azurewebsites.net/api/locations",
   //   charts: "https://ezwebapi.azurewebsites.net/api/charts"
   // },
+
+  //   Loacal
   Urls: {
     serverUrl:"http://localhost:8888",
     baseApiUrl:"http://localhost:8888/api",

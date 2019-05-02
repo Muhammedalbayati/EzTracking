@@ -6,5 +6,6 @@ export class EzDriver {
     email: string;
     shift: string;
     signUpDate: Date;
+    active: boolean;
 }
 

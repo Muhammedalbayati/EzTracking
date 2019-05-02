@@ -1,16 +1,16 @@
 <div>
-  
+
 </div>
 <div class="sidenav" [ngStyle]="sideBarStyle" style="overflow-y: auto;" *ngIf="authServices.isLoggedIn">
-    <!--   -->
-  <div>
-    <a id="toggleBtn" (click)="doToggle()" style="cursor: pointer;">
+  <!--   -->
+  <!-- <div>
+    <a id="toggleBtn" (click)="doToggle()"  style="cursor: pointer;">
       <i class="fas fa-fw fa-bars">
         <i class="fas fa-angle-right" *ngIf="!toggle"></i>
         <i class="fas fa-angle-left" *ngIf="toggle"></i>
       </i>
     </a>
-  </div>
+  </div> -->
 
   <!-- advanceSearch -->
   <div class="item">
@@ -29,6 +29,12 @@
     </div>
 
     <div class="item">
+      <a [routerLink]="['/agbolrequests']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>AG BOLs Requests
+      </a>
+    </div>
+
+    <div class="item">
       <a [routerLink]="['/bolrequests']" routerLinkActive="active">
         <i class="fas fa-fw fa-th"></i>BOLs Requests
       </a>
@@ -38,6 +44,12 @@
     <div class="item">
       <a [routerLink]="['/completedrequests']" routerLinkActive="active">
         <i class="fas fa-fw fa-th"></i>Completed Requests
+      </a>
+    </div>
+
+    <div class="item">
+      <a [routerLink]="['/adddriver']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Add Driver
       </a>
     </div>
 
@@ -108,6 +120,37 @@
   <!-- Manager -->
   <div *ngIf="authServices.roleMatch(['Admin','Manager'])">
 
+    <div class="item" style="background-color:gray">
+      <a>
+        <i class="fas fa-fw fa-user-circle"></i>Manager menu
+      </a>
+    </div>
+
+    <div class="item">
+      <a [routerLink]="['/addBuilding']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Buildings
+      </a>
+    </div>
+    <div class="item">
+      <a [routerLink]="['/addContainer']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Conatiners
+      </a>
+    </div>
+    <div class="item">
+      <a [routerLink]="['/addCargo']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Cargos
+      </a>
+    </div>
+    <div class="item">
+      <a [routerLink]="['/addPbg']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>PBGs
+      </a>
+    </div>
+    <div class="item">
+      <a [routerLink]="['/addVehicle']" routerLinkActive="active">
+        <i class="fas fa-fw fa-th"></i>Vehicles
+      </a>
+    </div>
 
   </div>
 

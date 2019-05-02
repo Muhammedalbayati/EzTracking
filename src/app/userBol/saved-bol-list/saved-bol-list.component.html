@@ -14,7 +14,7 @@
         <th>PickupLocation</th>
         <th>Delivery Location</th>
         <th>VehicleType</th>
-        <th>Comment</th>
+        <th>User Comment</th>
         <th>Expidate</th>
         <th>Submitted</th>
         <th>itmes</th>
@@ -35,12 +35,12 @@
         <td>{{ bol.pickupLocation.locationName }}</td>
         <td>{{ bol.deliveryLocation.locationName }}</td>
         <td>{{ bol.vehicle.vehicleType }}</td>
-        <td>{{ bol.comment }}</td>
+        <td>{{ bol.userComment }}</td>
         <td> <i [ngClass]="{'fa fa-1x fa-shipping-fast':bol.expidate}" class="mb-2" style="color:red"></i> </td>
         <td> <i [ngClass]="{'fas fa-check':bol.submitted}"></i> No </td>
         <td>{{ bol.bolItems.length }}</td>
         <td>
-          <i [routerLink]="['/boldetail', bol.bolId]" class="fas fa-edit" style="color:blueviolet"> </i>
+          <i [routerLink]="['/boldetail', bol.bolId]" class="fas fa-edit" style="color:blueviolet ;cursor: pointer;"> </i>
         </td>
 
       </tr>

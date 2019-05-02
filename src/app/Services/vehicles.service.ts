@@ -6,17 +6,37 @@ import { catchError } from "rxjs/operators";
 import { CONFIG } from "../config";
 import { Vehicle } from "../models/vehicle";
 
-const vehiclesUrl = CONFIG.Urls.baseApiUrl+'/vehicles';
+const vehiclesUrl = CONFIG.Urls.baseApiUrl + '/vehicles';
 
 @Injectable({
   providedIn: "root"
 })
 export class VehiclesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getVehicles(): Observable<Vehicle[]> {
     return this.http
       .get<Vehicle[]>(vehiclesUrl)
+      .pipe(catchError(this.handleError));
+  }
+
+  addVehicle(vehicle: any): Observable<any> {
+    console.log(vehicle)
+    return this.http
+      .post<Vehicle>(vehiclesUrl + '/addVehicle', vehicle)
+      .pipe(catchError(this.handleError));
+  }
+
+
+  updateVehicle(Vehicle: any): Observable<any> {
+    console.log(Vehicle)
+    return this.http
+      .patch<Vehicle>(vehiclesUrl + '/updateVehicle/' + Vehicle.vehicleId, Vehicle)
+      .pipe(catchError(this.handleError))
+  }
+
+  deleteVehicle(vehicleId) {
+    return this.http.delete(vehiclesUrl + "/deleteVehicle/" + vehicleId)
       .pipe(catchError(this.handleError));
   }
 

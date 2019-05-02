@@ -10,7 +10,8 @@ class ActionsUpdateBol {
     DispatcherId: string;
     Completed: boolean;
     CompletedDate: Date;
-    Comment: string;
+    UserComment: string;
+    DispatcherComment: string;
 }
 
 

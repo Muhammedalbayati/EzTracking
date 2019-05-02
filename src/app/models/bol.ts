@@ -18,7 +18,8 @@ export class Bol {
   driver:{driverId:number,firstName:string,lastName:string,PhoneNumber:string,shift:string};
   completed: boolean;
   items: object[];
-  comment: string;
+  userComment: string;
+  dispatcherComment: string;
   // isCrossDock: Boolean;
   crossDockAddress: string;
   // pickupLocationId: number;

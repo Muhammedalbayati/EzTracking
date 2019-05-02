@@ -12,7 +12,8 @@
         <th>PickupLocation</th>
         <th>Delivery Location</th>
         <th>VehicleType</th>
-        <th>Comment</th>
+        <th>User Comment</th>
+        <th>Disp. Comment</th>
         <th>Submitted</th>
         <th>itmes</th>
         <th></th>
@@ -20,7 +21,7 @@
     </thead>
     <tbody>
       <!-- | async -->
-      <tr *ngFor="let bol of bols" [ngClass]="{'text-success': bol.submitted}" >
+      <tr *ngFor="let bol of bols" [ngClass]="{'text-success': bol.submitted}">
         <!--
           <td>
             <a  routerLink="['/addbol',bol.bolId]">{{bol.bolId}}</a>
@@ -32,11 +33,13 @@
         <td>{{ bol.pickupLocation.locationName }}</td>
         <td>{{ bol.deliveryLocation.locationName }}</td>
         <td>{{ bol.vehicle.vehicleType }}</td>
-        <td>{{ bol.comment }}</td>
-        <td> <i [ngClass]="{'fas fa-check':bol.submitted}"></i> </td>
+        <td>{{ bol.userComment }}</td>
+        <td>{{ bol.dispatcherComment }}</td>
+        <td style="color:blueviolet ;cursor: pointer;"> <i [ngClass]="{'fas fa-check':bol.submitted}"></i> </td>
         <td>{{ bol.bolItems.length }}</td>
         <td>
-          <i [routerLink]="['/bol/addbol', bol.bolId]" class="fas fa-edit" style="color:blueviolet"> </i>
+          <i [routerLink]="['/bol/addbol', bol.bolId]" class="fas fa-edit" style="color:blueviolet ;cursor: pointer;">
+          </i>
         </td>
 
       </tr>

@@ -1,0 +1,82 @@
+<h4>{{ errorMsg }}</h4>
+<!-- <ngx-spinner color="#f97924"></ngx-spinner> -->
+<h4>Add Building Location</h4>
+<hr>
+<form [formGroup]="buildingForm">
+
+  <div class="row">
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Bldg Location Id</label>
+        <input type="text" class="form-control" formControlName="locationId" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Location Name</label>
+        <input type="text" class="form-control" formControlName="locationName" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Building</label>
+        <input type="text" class="form-control" formControlName="building" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Address</label>
+        <input type="text" class="form-control" formControlName="address" />
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">City</label>
+        <input type="text" class="form-control" formControlName="city" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">Phone</label>
+        <input type="text" class="form-control" formControlName="phone" />
+      </div>
+    </div>
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">State</label>
+        <input type="text" class="form-control" formControlName="state" />
+      </div>
+    </div>
+
+
+    <div class="col-md-3 col-lg-3">
+      <div class="form-group">
+        <label class="control-label">zip</label>
+        <input type="text" class="form-control" formControlName="zip" />
+      </div>
+    </div>
+
+  </div>
+
+</form>
+<hr>
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <button class="btn btn-success" style="margin-right: 50px;" (click)="saveClick()">Save</button>
+    <button class="btn btn-default" style="margin-right: 50px;" (click)="clearFrom()">Clear</button>
+    <button class="btn btn-danger" (click)="deleteBuilding()">Delete</button>
+  </div>
+</div>
+<hr>
+
+
+<ez-buildingslist (selectedLocation)='onBuildingRowClicked($event)'></ez-buildingslist>
