@@ -39,7 +39,7 @@ export class UserDetailComponent implements OnInit {
     this.getRoles();
     //this.selectedUser = this.adminService.selectedUser// I use this way because the userId not working with the url parameter
 
-    // console.log(this.selectedUser)
+    // //console.log(this.selectedUser)
 
     this.userDetailForm = this.fb.group({
       userId: null,
@@ -56,9 +56,9 @@ export class UserDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       if (params.get("userId") != null) {
         var id = params.get("userId");
-        console.log("userId : " + id);
+        //console.log("userId : " + id);
         this.userDetails(id);
-        console.log(this.user)
+        //console.log(this.user)
         // this.getBolItems(params.get("bolId"));
       }
     });
@@ -70,7 +70,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   fillTheForm() {
-    console.log(this.user)
+    //console.log(this.user)
     this.userDetailForm.patchValue({
       userId: this.user.userId,
       badge: this.user.badge,//[{ value: null, disabled: true }, [Validators.required]],
@@ -90,7 +90,7 @@ export class UserDetailComponent implements OnInit {
     this.adminService.getAllRoles().subscribe(
       data => {
         this.spinner.hide();
-        console.log(data);
+        //console.log(data);
         this.roles = data
       },
       (err: any) => {
@@ -107,14 +107,14 @@ export class UserDetailComponent implements OnInit {
       .subscribe(
         data => {
           this.buildings = data;
-          console.log(data)
+          //console.log(data)
           this.spinner.hide()
         },
         (err: any) => (this.errorMsg = err)
       );
   }
   // showDeleteUserModal(userId) {
-  //   console.log(this.adminService.selectedUser);
+  //   //console.log(this.adminService.selectedUser);
   //   // this.userDetailsForm.controls.userId.setValue(userId);
   //   // this.idx = idx;
   // }
@@ -125,7 +125,7 @@ export class UserDetailComponent implements OnInit {
       b => {
         this.spinner.hide();
         this.user = b[0]
-        console.log(this.user)
+        //console.log(this.user)
         this.fillTheForm()
         //this.toastr.success("User info been updated successfuly!");
       },
@@ -168,7 +168,7 @@ export class UserDetailComponent implements OnInit {
       firstName: this.userDetailForm.get('firstName').value,
       shift: this.userDetailForm.get('shift').value,
     }
-    console.log('form values ', _user)
+    //console.log('form values ', _user)
     this.adminService.updateUser(_user).subscribe(
       b => {
         this.spinner.hide();

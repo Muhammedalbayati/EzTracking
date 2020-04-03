@@ -44,6 +44,7 @@ export class PbgslistComponent implements OnInit {
 
 
   getPbgs() {
+    this.spinner.show();
     this.pbgService.getPbgs().subscribe(
       data => {
         this.spinner.hide();

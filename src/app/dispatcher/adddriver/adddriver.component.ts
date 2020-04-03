@@ -52,7 +52,7 @@ export class AdddriverComponent implements OnInit {
   }
 
   onDriverRowClicked(data: any) {
-    console.log(data)
+    ////console.log(data)
     if (data === null || data === undefined) {
       return
     }
@@ -61,10 +61,10 @@ export class AdddriverComponent implements OnInit {
 
   saveClick() {
     if (this.driverForm.controls.driverId.value !== null || this.driverForm.controls.driverId.value != undefined) {
-      console.log('update')
+      ////console.log('update')
       this.updateDriver()
     } else {
-      console.log('new')
+      ////console.log('new')
       this.addDriver()
     }
   }
@@ -74,7 +74,7 @@ export class AdddriverComponent implements OnInit {
     this.spinner.show()
     this.driverService.updateDriver(this.driverForm.getRawValue()).subscribe(
       d => {
-        // console.log(d)
+        // ////console.log(d)
         this.toastr.success('UPDATED')
         this.ezDriver = d
         // this.driverForm.patchValue({

@@ -16,7 +16,7 @@ export class BuildingslistComponent implements OnInit {
   _bldgLocation: any = {}
   @Input()
   set bldgLocation(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       this._bldgLocation = val
     }
@@ -38,17 +38,18 @@ export class BuildingslistComponent implements OnInit {
   }
 
   onRowClick(data) {
-    // console.log(data)
+    // //console.log(data)
     this.selectedLocation.emit(data)
 
   }
 
   getLocations() {
+    this.spinner.show();
     this.locationService.getLocations().subscribe(
       data => {
         this.spinner.hide();
         this.bldgLocations = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();

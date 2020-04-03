@@ -53,7 +53,7 @@ export class SearchBoxComponent implements OnInit {
           .then(() => this.router.navigate(["/searchresult"]));
       },
       err => {
-        console.log(err);
+        //console.log(err);
         this.spinner.hide();
       }
     );

@@ -14,7 +14,7 @@ export class ContainerlistComponent implements OnInit {
   _container: any = {}
   @Input()
   set container(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       this._container = val
     }
@@ -36,7 +36,7 @@ export class ContainerlistComponent implements OnInit {
   }
 
   onRowClick(data) {
-    // console.log(data)
+    // //console.log(data)
     this.selectedContainer.emit(data)
 
   }
@@ -44,11 +44,12 @@ export class ContainerlistComponent implements OnInit {
 
 
   getcontainers() {
+    this.spinner.show();
     this.containerService.getContainers().subscribe(
       data => {
         this.spinner.hide();
         this.containers = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();

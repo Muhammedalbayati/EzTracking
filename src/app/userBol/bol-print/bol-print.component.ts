@@ -41,7 +41,7 @@ export class BolPrintComponent implements OnInit {
         this.fillBolObject(data)
       },
       err => {
-        // console.log(err);
+        // //console.log(err);
         this.errorMsg = err
         this.spinner.hide();
       }
@@ -49,7 +49,7 @@ export class BolPrintComponent implements OnInit {
   }
 
   fillBolObject(bol) {
-    console.log(bol)
+    //console.log(bol)
     this.bol = {
       assginToDriverDate: bol.assginToDriverDate,
       assginedToDriver: bol.assginToDriver,
@@ -94,7 +94,7 @@ export class BolPrintComponent implements OnInit {
       submittedDate: bol.submittedDate,
       crossDockAddress: bol.crossDockAddress
     }
-    console.log(this.bol)
+    //console.log(this.bol)
     // bolId: bol.bolId,
     // requesterId: bol.requesterId,
     // recipient: bol.recipient,
@@ -115,12 +115,12 @@ export class BolPrintComponent implements OnInit {
   crossDockAddressFormater() {
     if (this.bol.crossDockAddress == null || this.bol.crossDockAddress == '') return
     var ad = this.bol.crossDockAddress.split(",")
-    // console.log(ad)
+    // //console.log(ad)
     return ad
   }
 
   print(): void {
-    // console.log(this.bol.getRawValue())
+    // //console.log(this.bol.getRawValue())
     let printContents, popupWin;
     printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', 'top=1,left=1,height=100%,width=auto');//'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'

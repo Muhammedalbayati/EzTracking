@@ -10,7 +10,7 @@ export class DispatcherBolViewComponent implements OnInit {
   _bolId: any
   @Input()
   set bolId(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       this._bolId = val
       // this.getBolById(this._bolId)

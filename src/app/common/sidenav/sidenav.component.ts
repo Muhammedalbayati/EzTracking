@@ -43,7 +43,7 @@ export class SidenavComponent implements OnInit {
         padding: '1px'
       }
     }
-    // console.log(this.mainStyle)
+    // //console.log(this.mainStyle)
   }
 
 }

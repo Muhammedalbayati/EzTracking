@@ -29,8 +29,8 @@ export class AdvanceSearchComponent implements OnInit {
   search(qryClass) {
     // return Object.keys(this).every((key) => user[key] === this[key]);
     for (const prop in qryClass) {
-      // console.log(`qryClass.${prop} = ${qryClass[prop]}`);
-      console.log(qryClass)
+      // //console.log(`qryClass.${prop} = ${qryClass[prop]}`);
+      //console.log(qryClass)
     }
     
 

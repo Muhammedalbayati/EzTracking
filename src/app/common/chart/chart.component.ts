@@ -20,7 +20,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   @Input()
   set chartData(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       val.forEach(d => {
         this._chartData.push(d)
@@ -36,7 +36,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   _chartType: any
   @Input()
   set chartType(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       this._chartType = val
     }
@@ -49,7 +49,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   @Input()
   set chartLabels(val: any) {
-    // console.log('val', val)
+    // //console.log('val', val)
     if (val != null || val != undefined) {
       val.forEach(l => {
         this._chartLabels.push(l)
@@ -79,7 +79,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     // var lbls = this.chartData.map(function (x) { return x.pickupLocation })
     // var lbls = this._chartLabels
     // var data = this._chartData
-    // console.log(this._chartLabels)
+    // //console.log(this._chartLabels)
     //*****************************/
     // var counts = this.chartData.reduce((p, c) => {
     //   var name = c.pickupLocation.toUpperCase();
@@ -89,7 +89,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     //   p[name]++;
     //   return p;
     // }, {});
-    // console.log(counts);
+    // //console.log(counts);
     // ****************************
     var ctx = this.myChartEle.nativeElement.getContext('2d') //document.getElementById("myChart");
     var myChart = new Chart(ctx, {

@@ -23,14 +23,14 @@ export class DriversService {
   }
 
   addDriver(driver: any): Observable<any> {
-    console.log(driver)
+    //console.log(driver)
     return this.http
       .post<EzDriver>(driverUrl + '/addDriver', driver)
       .pipe(catchError(this.handleError));
   }
 
   updateDriver(driver: any): Observable<any> {
-    console.log(driver)
+    //console.log(driver)
     return this.http
       .patch<EzDriver>(driverUrl + '/updateDriver/' + driver.driverId, driver)
       .pipe(catchError(this.handleError))

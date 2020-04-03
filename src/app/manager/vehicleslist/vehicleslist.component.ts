@@ -14,7 +14,7 @@ export class VehicleslistComponent implements OnInit {
   _vehicle: any = {}
   @Input()
   set vehicle(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       this._vehicle = val
     }
@@ -36,7 +36,7 @@ export class VehicleslistComponent implements OnInit {
   }
 
   onRowClick(data) {
-    // console.log(data)
+    // //console.log(data)
     this.selectedVehicle.emit(data)
 
   }
@@ -44,11 +44,12 @@ export class VehicleslistComponent implements OnInit {
 
 
   getvehicles() {
+    this.spinner.show();
     this.vehicleService.getVehicles().subscribe(
       data => {
         this.spinner.hide();
         this.vehicles = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();

@@ -21,15 +21,15 @@ export class CargoService {
   }
 
   addCargo(cargo: any): Observable<any> {
-    console.log(cargo)
+    ////console.log(cargo)
     return this.http
-      .post<Cargo>(cargoUrl + '', cargo)
+      .post<Cargo>(cargoUrl + '/addCargo', cargo)
       .pipe(catchError(this.handleError));
   }
 
 
   updateCargo(cargo: any): Observable<any> {
-    console.log(cargo)
+    ////console.log(cargo)
     return this.http
       .patch<Cargo>(cargoUrl + '/updateCargo/' + cargo.cargoId, cargo)
       .pipe(catchError(this.handleError))

@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
   // }
 
   // searchBtnClicked(data) {
-  //   console.log('navbar searchBtnClick', data)
+  //   //console.log('navbar searchBtnClick', data)
   //   return data
   // }
 

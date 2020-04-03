@@ -43,7 +43,7 @@ export class AddcontainerComponent implements OnInit {
   }
 
   onContainerRowClicked(data: any) {
-    console.log(data)
+    //console.log(data)
     if (data === null || data === undefined) {
       return
     }
@@ -52,10 +52,10 @@ export class AddcontainerComponent implements OnInit {
 
   saveClick() {
     if (this.containerForm.controls.containerId.value !== null || this.containerForm.controls.containerId.value != undefined) {
-      console.log('update')
+      //console.log('update')
       this.updateContainer()
     } else {
-      console.log('new')
+      //console.log('new')
       this.addContainer()
     }
   }
@@ -65,7 +65,7 @@ export class AddcontainerComponent implements OnInit {
     this.spinner.show()
     this.containerService.updateContainer(this.containerForm.getRawValue()).subscribe(
       d => {
-        // console.log(d)
+        // //console.log(d)
         this.toastr.success('UPDATED')
         this.container = d
         // this.containerForm.patchValue({

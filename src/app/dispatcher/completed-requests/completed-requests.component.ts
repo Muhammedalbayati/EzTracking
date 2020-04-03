@@ -54,7 +54,7 @@ export class CompletedRequestsComponent implements OnInit {
       data => {
         this.spinner.hide();
         this.bols = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();
@@ -65,7 +65,7 @@ export class CompletedRequestsComponent implements OnInit {
   }
 
   handleSelectedBol(bol) {
-    // console.log(bol)
+    // //console.log(bol)
     this.selectedBolId=bol.bolId
   }
 

@@ -39,7 +39,7 @@ export class AddcargoComponent implements OnInit {
   }
 
   onCargoRowClicked(data: any) {
-    console.log(data)
+    //console.log(data)
     if (data === null || data === undefined) {
       return
     }
@@ -48,10 +48,10 @@ export class AddcargoComponent implements OnInit {
 
   saveClick() {
     if (this.cargoForm.controls.cargoId.value !== null || this.cargoForm.controls.cargoId.value != undefined) {
-      console.log('update')
+      //console.log('update')
       this.updateCargo()
     } else {
-      console.log('new')
+      //console.log('new')
       this.addCargo()
     }
   }
@@ -61,7 +61,7 @@ export class AddcargoComponent implements OnInit {
     this.spinner.show()
     this.cargoService.updateCargo(this.cargoForm.getRawValue()).subscribe(
       d => {
-        // console.log(d)
+        // //console.log(d)
         this.toastr.success('UPDATED')
         this.cargo = d
         // this.cargoForm.patchValue({

@@ -56,7 +56,7 @@ export class BolService {
   getUserIsSubmittedBols(isSubmitted: boolean): Observable<Bol[]> {
     var _userInfo = JSON.parse(localStorage.getItem("userInfo"))
     const userId=_userInfo.firstName.substring(1,0)+_userInfo.lastName+ _userInfo.badge
-    console.log(_userInfo)
+    //console.log(_userInfo)
     return this.http.get<Bol[]>(bolUrl + "/isSubmitted/" + userId + "/" + isSubmitted)
       .pipe(catchError(this.handleError));
   }
@@ -88,8 +88,8 @@ export class BolService {
   // }
 
   updateBol(bol: any): Observable<Bol> {
-    console.log("update bol func")
-    console.log('bol service Bol update', bol)
+    //console.log("update bol func")
+    //console.log('bol service Bol update', bol)
     return this.http
       .patch<Bol>(bolUrl + '/updatebol/' + bol.bolId, bol)
       .pipe(catchError(this.handleError))
@@ -97,8 +97,8 @@ export class BolService {
 
 
   actionsUpdate(bol: any): Observable<Bol> {
-    console.log("update bol func")
-    console.log('bol service Bol update', bol)
+    //console.log("update bol func")
+    //console.log('bol service Bol update', bol)
     return this.http
       .patch<Bol>(bolUrl + '/actionsUpdate/' + bol.bolId, bol)
       .pipe(catchError(this.handleError))
@@ -106,7 +106,7 @@ export class BolService {
 
   addBol(bolCreate: any): Observable<Bol> {
     // bolCreate.driverId = 1;
-    console.log(bolCreate)
+    //console.log(bolCreate)
     return this.http
       .post<Bol>(bolUrl + '', bolCreate)
       .pipe(catchError(this.handleError));
@@ -121,7 +121,7 @@ export class BolService {
 
 
   searchBols(searchTerm: any) {
-    console.log(searchTerm)
+    //console.log(searchTerm)
 
     return this.http
       .post<SearchResult[]>(bolUrl + "/search", searchTerm)
@@ -143,10 +143,10 @@ export class BolService {
 
   // //https://angular.io/guide/http
   private handleError(error: HttpErrorResponse) {
-    console.log(JSON.stringify(error))
+    //console.log(JSON.stringify(error))
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.log("An error occurred:", error.error.message);
+      //console.log("An error occurred:", error.error.message);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,

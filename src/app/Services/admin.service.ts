@@ -41,7 +41,7 @@ export class AdminService {
   }
 
 updateUser(user){
-  console.log(user)
+  //console.log(user)
   return this.http
   .patch<any>(adminUrl + '/updateUser', user)
   .pipe(catchError(this.handleError))
@@ -61,7 +61,7 @@ updateUser(user){
 
   // setSelectedUser(user) {
   //   this._selectedUser = user;
-  //   console.log(this._selectedUser)
+  //   //console.log(this._selectedUser)
   // }
 
   // getSelectedUser() {

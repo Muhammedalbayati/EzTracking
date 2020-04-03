@@ -39,7 +39,7 @@ export class UserslistComponent implements OnInit {
         this.spinner.show();
         this.users = data;
         this.filteredUsers = this.users
-        console.log(data);
+        //console.log(data);
         this.spinner.hide();
       },
       (err: any) => {
@@ -62,9 +62,9 @@ export class UserslistComponent implements OnInit {
       || u.shift.toLocaleLowerCase().indexOf(this.filterBy) !== -1
       // {
       //   for (const prop in u) {
-      //     // console.log(`u.${prop} = ${u[prop]}`);
+      //     // //console.log(`u.${prop} = ${u[prop]}`);
       //     prop.toLocaleLowerCase().indexOf(this.filterBy) !== -1;
-      //     // console.log(u[prop])
+      //     // //console.log(u[prop])
       //   }
       // }
     )

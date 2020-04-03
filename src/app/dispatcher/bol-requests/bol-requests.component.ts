@@ -86,47 +86,47 @@ export class BolRequestsComponent implements OnInit {
     })
   }
 
-  filterData() {
-    this.bols.forEach(b =>
+  // filterData() {
+  //   this.bols.forEach(b =>
 
-      // b.bolNumber.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.userId.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.submittedDate.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.pickupLocation.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.deliveryLocation.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.vehicleType.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.userComment.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.disp.Comment.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.submitted.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.expidate.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.itmes.toLocaleLowerCase().indexOf(this.filterBy) !== -1
-      // || b.driver.driverName.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // b.bolNumber.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.userId.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.submittedDate.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.pickupLocation.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.deliveryLocation.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.vehicleType.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.userComment.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.disp.Comment.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.submitted.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.expidate.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.itmes.toLocaleLowerCase().indexOf(this.filterBy) !== -1
+  //     // || b.driver.driverName.toLocaleLowerCase().indexOf(this.filterBy) !== -1
 
-      // Object.entries(b).forEach(o => {
-      //   console.log(o)
-      // })
+  //     // Object.entries(b).forEach(o => {
+  //     //   //console.log(o)
+  //     // })
 
-      // Object.entries(b).forEach(([key, val]) => {
-      //   // console.log(key);          // the name of the current key.
-      //   // console.log(val);          // the value of the current key.
-      // if (key.toLocaleLowerCase().indexOf(this.filterBy) !== -1) {
-      //   console.log(key);
-      //   console.log(val);
-      // }
-      // })
+  //     // Object.entries(b).forEach(([key, val]) => {
+  //     //   // //console.log(key);          // the name of the current key.
+  //     //   // //console.log(val);          // the value of the current key.
+  //     // if (key.toLocaleLowerCase().indexOf(this.filterBy) !== -1) {
+  //     //   //console.log(key);
+  //     //   //console.log(val);
+  //     // }
+  //     // })
 
 
-      Object.keys(b).forEach(key => {
-        // console.log(key, b[key])
-        // console.log(key, b[key])
-        if (b[key].toLocaleLowerCase().indexOf(this.filterBy) !== -1) {
-          console.log(b[key]);
-        }
+  //     Object.keys(b).forEach(key => {
+  //       // //console.log(key, b[key])
+  //       // //console.log(key, b[key])
+  //       if (b[key].toLocaleLowerCase().indexOf(this.filterBy) !== -1) {
+  //         //console.log(b[key]);
+  //       }
 
-      })
+  //     })
 
-    )
-  }
+  //   )
+  // }
 
 
 
@@ -167,7 +167,7 @@ export class BolRequestsComponent implements OnInit {
 
     if (bolId !== null || bolId !== undefined) {
       var u = this.lockedByArray.find(x => x.bolId === bolId)
-      // console.log('get edit info', u)
+      // //console.log('get edit info', u)
       return u
     } else {
       return null
@@ -212,7 +212,7 @@ export class BolRequestsComponent implements OnInit {
         this.spinner.hide();
         this.bols = data;
         this.filteredBols = this.bols;
-        // console.log(data);
+        // //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();
@@ -224,7 +224,7 @@ export class BolRequestsComponent implements OnInit {
 
 
   handleSelectedBol(bol) {
-    // console.log(bol)
+    // //console.log(bol)
     var user = JSON.parse(localStorage.getItem('userInfo'))
 
     var editInfo = {
@@ -248,7 +248,7 @@ export class BolRequestsComponent implements OnInit {
   //     this.selectedBols.splice(idx, 1)
   //   }
 
-  //   console.log(this.selectedBols)
+  //   //console.log(this.selectedBols)
   // }
 
 

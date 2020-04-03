@@ -22,7 +22,7 @@ export class SignalrService {
   //   this.connection = this._signalR.createConnection();
   //   // this.bolListener == new BroadcastEventListener<Bol>('NewBol');
   //   this.connection.start(()=>{
-  //     console.log('signalr connected')
+  //     //console.log('signalr connected')
   //   });
 
   //   // this.signalrBol()
@@ -36,7 +36,7 @@ export class SignalrService {
   //   // // subscribe for incoming messages
   //   this.bolListener.subscribe((b: Bol) => {
   //     _bol = b
-  //     console.log('bol from the signalr', b)
+  //     //console.log('bol from the signalr', b)
   //   });
   //   return _bol
   //   // // listen for connection errors

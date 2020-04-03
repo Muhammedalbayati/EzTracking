@@ -118,7 +118,7 @@ export class AddbolComponent implements OnInit {
   }
 
   hideOrShowExternalCheckBox() {
-    // console.log(this.userInfo.roles.includes('Admin','Dispatcher'))
+    // //console.log(this.userInfo.roles.includes('Admin','Dispatcher'))
     return this.userInfo.roles.includes('Admin') || this.userInfo.roles.includes('Dispatcher')
   }
 
@@ -127,7 +127,7 @@ export class AddbolComponent implements OnInit {
     let selectedIndex = selectedOptions.selectedIndex;
     let selectElementText = selectedOptions[selectedIndex].text;
 
-    console.log(selectElementText)
+    //console.log(selectElementText)
     if (selectElementText == 'CrossDock') {
       this.bolForm.controls['crossDockAddress'].clearValidators();
       this.bolForm.controls['crossDockAddress'].enable();
@@ -146,7 +146,7 @@ export class AddbolComponent implements OnInit {
     this.spinner.show();
     this.bolService.getBolDetails(bolId).subscribe(
       data => {
-        console.log('data', data)
+        //console.log('data', data)
         this.fillBolForm(data);
         if (data.deliveryLocation.locationName == 'CrossDock') {
           this.bolForm.controls['crossDockAddress'].clearValidators();
@@ -163,7 +163,7 @@ export class AddbolComponent implements OnInit {
         this.spinner.hide();
       },
       err => {
-        // console.log(err);
+        // //console.log(err);
         this.errorMsg = err
         this.spinner.hide();
       }
@@ -171,7 +171,7 @@ export class AddbolComponent implements OnInit {
   }
 
   fillBolForm(bol) {
-    console.log(bol)
+    //console.log(bol)
     this.bolForm.reset();
     this.items = bol.bolItems;
     this.bolForm.patchValue({
@@ -200,17 +200,17 @@ export class AddbolComponent implements OnInit {
     // this.ploc( bol.pickupLocation.locationName);
     // this.bolForm.get('deliveryLocation').setValue(bol.deliveryLocation.locationName);
     // this.items = bol.bolItems;
-    // console.log(this.items)
-    // console.log(moment().diff(this.bolForm.controls.submittedDate.value,'hours'))
+    // //console.log(this.items)
+    // //console.log(moment().diff(this.bolForm.controls.submittedDate.value,'hours'))
     if (this.bolForm.controls.submittedDate.value != null) {
       this.submittedHours = moment().diff(this.bolForm.controls.submittedDate.value, 'hours')
     } else {
       this.submittedHours = 0
     }
-    console.log(this.bolForm.controls['deliveryLocation'].value)
+    //console.log(this.bolForm.controls['deliveryLocation'].value)
 
-    // console.log(this.submittedHours)
-    // console.log(moment('12-12-2018').fromNow(true))
+    // //console.log(this.submittedHours)
+    // //console.log(moment('12-12-2018').fromNow(true))
     // if (this.bolForm.controls.bolId.value != 0) {
     //   this.getBolItems(this.bolForm.controls.bolId.value)
     // }
@@ -232,7 +232,7 @@ export class AddbolComponent implements OnInit {
 
 
   isExternalBol() {
-    console.log(this.bolForm.get('externalBol').value)
+    //console.log(this.bolForm.get('externalBol').value)
     const ext = this.bolForm.get('externalBol').value
 
     if (ext) {
@@ -303,7 +303,7 @@ export class AddbolComponent implements OnInit {
   // }
 
   pushAddedItem(data) {
-    console.log(data);
+    //console.log(data);
     this.items.push(data);
   }
 
@@ -311,7 +311,7 @@ export class AddbolComponent implements OnInit {
 
 
     var formValues = this.bolForm.getRawValue();
-    console.log(formValues);
+    //console.log(formValues);
 
     var _bol = new AddUpdateBol();
     _bol.bolId = formValues.bolId;
@@ -336,8 +336,8 @@ export class AddbolComponent implements OnInit {
     _bol.crossDockAddress = formValues.crossDockAddress;
 
     // if (this.submitted.value) {
-    //   console.log("it is submitt")
-    //   console.log(this.submitted.value)
+    //   //console.log("it is submitt")
+    //   //console.log(this.submitted.value)
     //   var d = moment().format("MM/DD/YYYY, h:mm:ss a");
     //   this.submittedDate.reset(d);
     //   _bol.submitted = true;
@@ -362,7 +362,7 @@ export class AddbolComponent implements OnInit {
 
 
   addBol(bol: any) {
-    console.log(bol)
+    //console.log(bol)
     this.spinner.show();
     this.errorMsg = "";
     this.bolService.addBol(bol).subscribe(
@@ -384,13 +384,13 @@ export class AddbolComponent implements OnInit {
   updateBol(bol) {
     this.errorMsg = "";
     this.spinner.show();
-    console.log(bol)
+    //console.log(bol)
 
     this.bolService.updateBol(bol).subscribe(
       b => {
         this.spinner.hide();
         //this.bolId.reset(b.bolId);
-        console.log(b);
+        //console.log(b);
       },
       (err: any) => {
         this.spinner.hide();
@@ -409,7 +409,7 @@ export class AddbolComponent implements OnInit {
   }
 
   cancelBol() {
-    console.log("cancel bol")
+    //console.log("cancel bol")
     var d = moment().format("MM/DD/YYYY, HH:mm")//moment().format("MM/DD/YYYY, h:mm:ss a");
     this.bolForm.controls.submittedDate.patchValue(null);
     this.bolForm.controls.submitted.patchValue(false);

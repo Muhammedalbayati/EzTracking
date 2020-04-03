@@ -14,7 +14,7 @@ export class CargolistComponent implements OnInit {
   _cargo: any = {}
   @Input()
   set cargo(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       this._cargo = val
     }
@@ -36,7 +36,7 @@ export class CargolistComponent implements OnInit {
   }
 
   onRowClick(data) {
-    // console.log(data)
+    // //console.log(data)
     this.selectedCargo.emit(data)
 
   }
@@ -44,11 +44,12 @@ export class CargolistComponent implements OnInit {
 
 
   getcargos() {
+    this.spinner.show();
     this.cargoService.getCargos().subscribe(
       data => {
         this.spinner.hide();
         this.cargos = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();

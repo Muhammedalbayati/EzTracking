@@ -16,7 +16,7 @@ export class DriverslistComponent implements OnInit {
   _ezDriver: any = {}
   @Input()
   set ezDriver(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       this._ezDriver = val
     }
@@ -38,7 +38,7 @@ export class DriverslistComponent implements OnInit {
   }
 
   onRowClick(data) {
-    // console.log(data)
+    // //console.log(data)
     this.selectedDriver.emit(data)
 
   }
@@ -50,7 +50,7 @@ export class DriverslistComponent implements OnInit {
       data => {
         this.spinner.hide();
         this.drivers = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();

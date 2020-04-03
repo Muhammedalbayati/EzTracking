@@ -83,7 +83,7 @@ export class AdditemComponent implements OnInit {
     //https://angular.io/api/forms/FormGroup
     //https://stackoverflow.com/questions/49675329/how-to-get-values-from-disabled-form-controls-in-a-form-group
 
-     console.log(this.bol);
+     //console.log(this.bol);
     domValues.bolId = this.bol.get('bolId').value;
     // domValues.containerId=this.bol.containerId;
     // domValues.pbgId=this.bol['pbgId'];
@@ -96,7 +96,7 @@ export class AdditemComponent implements OnInit {
     domValues.containerId = domValues.container.containerId;
     domValues.containerType = domValues.container.containerType;
 
-    console.log(domValues);
+    //console.log(domValues);
 
     this.spinner.show();
     this.itemService.addItem(domValues).subscribe(

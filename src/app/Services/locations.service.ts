@@ -28,7 +28,7 @@ export class LocationsService {
 
 
   addBuilding(bldg: any): Observable<any> {
-    console.log(bldg)
+    //console.log(bldg)
     return this.http
       .post<BldgLocation>(locationsUrl + '/addLocation', bldg)
       .pipe(catchError(this.handleError));
@@ -37,7 +37,7 @@ export class LocationsService {
 
 
   updateBulding(Bulding: any): Observable<any> {
-    console.log(Bulding)
+    //console.log(Bulding)
     return this.http
       .patch<BldgLocation>(locationsUrl + '/updateLocation/' + Bulding.locationId, Bulding)
       .pipe(catchError(this.handleError))

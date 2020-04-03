@@ -4,9 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
-
-
-
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AppRoutingModule, AppRoutedCompoenets } from "./app-routing.module";
 import { AppComponent } from "./app.component";

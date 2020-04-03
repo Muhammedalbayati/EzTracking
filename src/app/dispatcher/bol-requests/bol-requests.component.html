@@ -3,11 +3,11 @@
 <h3>{{ errorMsg }}</h3>
 <ngx-spinner color="#f97924"></ngx-spinner>
 
-<div class="col-xs-12 col-md-4">
+<!-- <div class="col-xs-12 col-md-4">
   <label class="control-label" for="textinput">Filter data</label>
-  <!-- [(ngModel)]="filterBy"  (keyup)="filterData()" -->
+ 
   <input  class="form-control" [(ngModel)]="searchText" >
-</div>
+</div> -->
 
 <div>
 
@@ -39,7 +39,8 @@
         <!-- | async -->
         <!-- class="border border-danger"  -->
         <!-- ,'strikeout':getEditInfo(bol.bolId)!=null-->
-        <tr *ngFor="let bol of bols | filter : searchText" [ngClass]="{'text-success': bol.submitted}">
+        <!-- | filter : searchText -->
+        <tr *ngFor="let bol of bols" [ngClass]="{'text-success': bol.submitted}">
 
           <td title="{{ bol.bolNumber }}" data-toggle="modal" (click)="handleSelectedBol(bol)" data-target="#exampleModal"
             style="color:blueviolet;cursor: pointer;">

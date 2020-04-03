@@ -39,7 +39,7 @@ export class AddvehicleComponent implements OnInit {
   }
 
   onVehicleRowClicked(data: any) {
-    console.log(data)
+    //console.log(data)
     if (data === null || data === undefined) {
       return
     }
@@ -48,10 +48,10 @@ export class AddvehicleComponent implements OnInit {
 
   saveClick() {
     if (this.vehicleForm.controls.vehicleId.value !== null || this.vehicleForm.controls.vehicleId.value != undefined) {
-      console.log('update')
+      //console.log('update')
       this.updateVehicle()
     } else {
-      console.log('new')
+      //console.log('new')
       this.addVehicle()
     }
   }
@@ -66,7 +66,7 @@ export class AddvehicleComponent implements OnInit {
     this.spinner.show()
     this.vehicleService.updateVehicle(this.vehicleForm.getRawValue()).subscribe(
       d => {
-        // console.log(d)
+        // //console.log(d)
         this.toastr.success('UPDATED')
         this.vehicle = d
         // this.vehicleForm.patchValue({

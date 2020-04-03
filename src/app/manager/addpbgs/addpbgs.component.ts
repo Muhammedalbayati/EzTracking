@@ -42,7 +42,7 @@ export class AddpbgsComponent implements OnInit {
   }
 
   onPbgRowClicked(data: any) {
-    console.log(data)
+    //console.log(data)
     if (data === null || data === undefined) {
       return
     }
@@ -51,10 +51,10 @@ export class AddpbgsComponent implements OnInit {
 
   saveClick() {
     if (this.pbgForm.controls.pbgId.value !== null || this.pbgForm.controls.pbgId.value != undefined) {
-      console.log('update')
+      //console.log('update')
       this.updatePbg()
     } else {
-      console.log('new')
+      //console.log('new')
       this.addPbg()
     }
   }
@@ -64,7 +64,7 @@ export class AddpbgsComponent implements OnInit {
     this.spinner.show()
     this.pbgService.updatePbg(this.pbgForm.getRawValue()).subscribe(
       d => {
-        // console.log(d)
+        // //console.log(d)
         this.toastr.success('UPDATED')
         this.pbg = d
         // this.pbgForm.patchValue({

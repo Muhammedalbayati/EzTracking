@@ -33,7 +33,7 @@ export class BollistComponent implements OnInit {
       data => {
         this.spinner.hide();
         this.bols = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();
@@ -45,7 +45,7 @@ export class BollistComponent implements OnInit {
   // details(bol: Bol) {
   //   this.selectedBol = bol;
   //   localStorage.setItem("bol", JSON.stringify(bol));
-  //   // console.log(this.selectedBol);
+  //   // //console.log(this.selectedBol);
   //   // this.router.navigate(["/bol/addbol", this.selectedBol]);
   // }
 }

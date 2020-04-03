@@ -38,7 +38,7 @@ item:any
 
 
   pushAddedItem(data) {
-    console.log(data);
+    //console.log(data);
     this.item=data
   }
 

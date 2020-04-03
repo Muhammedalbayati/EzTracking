@@ -30,7 +30,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
   _bolId: any
   @Input()
   set bolId(val: any) {
-    console.log('val', val)
+    //console.log('val', val)
     if (val != null || val != undefined) {
       this._bolId = val
       this.getBolById(this._bolId)
@@ -126,13 +126,13 @@ export class ActionsComponent implements OnInit, OnDestroy {
 
   signalrConnect() {
 
-    console.log('connection is started')
+    //console.log('connection is started')
     // subscribe for incoming messages
     this.bolListener.subscribe(bol => {
 
       // this.bols.push(_bol);
 
-      console.log('bol from the signalr', bol)
+      //console.log('bol from the signalr', bol)
     });
 
     // listen for connection errors
@@ -182,7 +182,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
       editByUser: user.firstName + ' ' + user.lastName,
       bolStatus: bolStatus,
     }
-    console.log('Action form - signalr edit bol invoke', editInfo)
+    //console.log('Action form - signalr edit bol invoke', editInfo)
     this.connection.invoke('EditBol', editInfo)
   }
 
@@ -195,7 +195,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
     this.bolService.getBolDetails(bolId).subscribe(
       data => {
         this.spinner.hide();
-        console.log('getBolById', data);
+        //console.log('getBolById', data);
         this.bol = data;
         this._bol = data;
       },
@@ -215,7 +215,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
       data => {
         this.spinner.hide();
         this.drivers = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();
@@ -228,7 +228,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
   //   // bol.driver = this.actions.driver;
   //   // this.bol.driverId=this.actionsForm.controls.driverId
 
-  //   console.log('assignDriver ', bol)
+  //   //console.log('assignDriver ', bol)
   // }
 
   cancelBol() {
@@ -256,7 +256,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
 
 
   completedBol() {
-    console.log("complete bol", this.bol)
+    //console.log("complete bol", this.bol)
     var _bol = this.bol;
     var d = moment().format("MM/DD/YYYY, HH:mm") //moment().format("MM/DD/YYYY, h:mm:ss a");
     if (this.actionsForm.controls.completed.value) {
@@ -307,7 +307,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
       this.bol.submitted = false
     }
 
-    console.log(this.bol)
+    //console.log(this.bol)
     this.errorMsg = "";
     this.spinner.show();
     if (this.bol.completed || this.bol.canceled) {
@@ -319,7 +319,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
       b => {
         this.spinner.hide();
         //this.bolId.reset(b.bolId);
-        console.log(b);
+        //console.log(b);
       },
       (err: any) => {
         this.spinner.hide();
@@ -332,7 +332,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
 
 
 
-  // console.log(this.selectedBols)
+  // //console.log(this.selectedBols)
 
 
 

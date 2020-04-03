@@ -33,7 +33,7 @@ export class SavedBolListComponent implements OnInit {
       data => {
         this.spinner.hide();
         this.bols = data;
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();

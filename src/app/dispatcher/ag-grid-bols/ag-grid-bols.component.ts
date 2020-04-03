@@ -29,12 +29,12 @@ export class AgGridBolsComponent implements OnInit {
 
 
 
-  private gridApi;
-  private gridColumnApi;
+   gridApi;
+   gridColumnApi;
 
-  private columnDefs;
-  private rowSelection;
-  private rowData: any[] = [];
+   columnDefs;
+   rowSelection;
+   rowData: any[] = [];
 
 
   @Inject(TOASTR_TOKEN)
@@ -127,7 +127,7 @@ export class AgGridBolsComponent implements OnInit {
         this.spinner.hide();
         this.bols = data;
         this.rowData = data
-        console.log(data);
+        //console.log(data);
       },
       (err: any) => {
         this.spinner.hide();
@@ -138,7 +138,7 @@ export class AgGridBolsComponent implements OnInit {
   }
 
   showDetails() {
-    console.log('showDetails')
+    //console.log('showDetails')
   }
 
 }

@@ -51,7 +51,7 @@ export class AddbuildingComponent implements OnInit {
   }
 
   onBuildingRowClicked(data: any) {
-    console.log(data)
+    //console.log(data)
     if (data === null || data === undefined) {
       return
     }
@@ -60,10 +60,10 @@ export class AddbuildingComponent implements OnInit {
 
   saveClick() {
     if (this.buildingForm.controls.locationId.value !== null || this.buildingForm.controls.locationId.value != undefined) {
-      console.log('update')
+      //console.log('update')
       this.updateBldg()
     } else {
-      console.log('new')
+      //console.log('new')
       this.addBldg()
     }
   }
@@ -73,7 +73,7 @@ export class AddbuildingComponent implements OnInit {
     this.spinner.show()
     this.locationService.updateBulding(this.buildingForm.getRawValue()).subscribe(
       d => {
-        console.log(d)
+        //console.log(d)
         this.toastr.success('UPDATED')
         this.bldg = d
         // this.buildingForm.patchValue({

@@ -23,7 +23,7 @@ export class ContainerService {
   }
 
   addContainer(container: any): Observable<any> {
-    console.log(container)
+    //console.log(container)
     return this.http
       .post<Container>(containerUrl + '/addContainer', container)
       .pipe(catchError(this.handleError));
@@ -31,7 +31,7 @@ export class ContainerService {
   
 
   updateContainer(Container: any): Observable<any> {
-    console.log(Container)
+    //console.log(Container)
     return this.http
       .patch<Container>(containerUrl + '/updateContainer/' + Container.containerId, Container)
       .pipe(catchError(this.handleError))

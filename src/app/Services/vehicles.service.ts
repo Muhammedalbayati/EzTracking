@@ -21,7 +21,7 @@ export class VehiclesService {
   }
 
   addVehicle(vehicle: any): Observable<any> {
-    console.log(vehicle)
+    //console.log(vehicle)
     return this.http
       .post<Vehicle>(vehiclesUrl + '/addVehicle', vehicle)
       .pipe(catchError(this.handleError));
@@ -29,7 +29,7 @@ export class VehiclesService {
 
 
   updateVehicle(Vehicle: any): Observable<any> {
-    console.log(Vehicle)
+    //console.log(Vehicle)
     return this.http
       .patch<Vehicle>(vehiclesUrl + '/updateVehicle/' + Vehicle.vehicleId, Vehicle)
       .pipe(catchError(this.handleError))

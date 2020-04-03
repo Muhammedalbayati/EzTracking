@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       data => {
         data.forEach(d => {
           _data.push(d)
-          // console.log(d)
+          // //console.log(d)
         })
       },
       (err: any) => {
@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
 
         this.chartData = _data
         this.cahrt_Labels = _lbls
-        console.log(this.cahrt_Labels)
+        //console.log(this.cahrt_Labels)
       }
     );
   }
@@ -113,7 +113,7 @@ export class HomeComponent implements OnInit {
   myChart() {
 
     // var yearLabel = this.last12MonthsChartData.map(function (x) { return x.theYear })[0]
-    // console.log(yearLabel)
+    // //console.log(yearLabel)
     var ctx = this.myChartEle.nativeElement.getContext('2d') //document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
       // The type of chart we want to create
@@ -166,7 +166,7 @@ export class HomeComponent implements OnInit {
   //   //   p[name]++;
   //   //   return p;
   //   // }, {});
-  //   // console.log(counts);
+  //   // //console.log(counts);
   //   // ****************************
   //   var ctx = this.myChartEle.nativeElement.getContext('2d') //document.getElementById("myChart");
   //   var myChart = new Chart(ctx, {

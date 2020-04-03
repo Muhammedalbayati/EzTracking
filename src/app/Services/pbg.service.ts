@@ -22,14 +22,14 @@ export class PbgService {
 
 
   addPbg(pbg: any): Observable<any> {
-    console.log(pbg)
+    //console.log(pbg)
     return this.http
       .post<Pbg>(pbgsUrl + '/addPbg', pbg)
       .pipe(catchError(this.handleError));
   }
 
   updatePbg(Pbg: any): Observable<any> {
-    console.log(Pbg)
+    //console.log(Pbg)
     return this.http
       .patch<Pbg>(pbgsUrl + '/updatePbg/' + Pbg.pbgId, Pbg)
       .pipe(catchError(this.handleError))

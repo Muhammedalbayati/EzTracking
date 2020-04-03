@@ -17,7 +17,7 @@ export class HoverOverTextDirective {
 
   @HostListener('mouseover') onMouseHover() {
     let el = this.el.nativeElement.querySelector(this.config.querySelector)
-    console.log(el)
+    //console.log(el)
     if (el != null) {
       this.renderer.setElementStyle(el, 'backgroundColor', 'red')
     }
